@@ -25,11 +25,13 @@ final class CartController extends Controller
         $cartId = $service->currentCartId();
 
         return $this->render('cart/index', [
-            'pageTitle' => 'Mon panier',
-            'cartId'    => $cartId,
-            'items'     => $service->items($cartId),
-            'totals'    => $service->totals($cartId),
-            'csrf'      => $this->session->csrfToken(),
+            'pageTitle'       => 'Mon panier',
+            'pageDescription' => 'Consultez et modifiez votre panier TuniShop avant de passer commande.',
+            'breadcrumb'      => ['Panier' => null],
+            'cartId'          => $cartId,
+            'items'           => $service->items($cartId),
+            'totals'          => $service->totals($cartId),
+            'csrf'            => $this->session->csrfToken(),
             'flash'     => [
                 'success' => $this->session->flash('success'),
                 'error'   => $this->session->flash('error'),

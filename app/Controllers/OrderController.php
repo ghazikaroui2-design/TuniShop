@@ -68,8 +68,10 @@ final class OrderController extends Controller
         }
 
         return $this->render('checkout/index', [
-            'pageTitle' => $step === 1 ? 'Livraison' : 'Paiement',
-            'step'      => $step,
+            'pageTitle'       => $step === 1 ? 'Livraison' : 'Paiement',
+            'pageDescription' => 'Finalisez votre commande TuniShop : livraison, paiement simulé et facture PDF.',
+            'breadcrumb'      => ['Panier' => '/panier', 'Commande' => null],
+            'step'            => $step,
             'cartId'    => $cartId,
             'items'     => $items,
             'totals'    => $service->totals($cartId),
@@ -177,8 +179,10 @@ final class OrderController extends Controller
         $order = $this->loadOrderForCurrentUser($id);
 
         return $this->render('order/confirmation', [
-            'pageTitle' => 'Commande ' . $order['order_number'],
-            'order'     => $order,
+            'pageTitle'       => 'Commande ' . $order['order_number'],
+            'pageDescription' => 'Suivi de votre commande ' . $order['order_number'] . ' et téléchargement de la facture.',
+            'breadcrumb'      => ['Mon compte' => '/compte', $order['order_number'] => null],
+            'order'           => $order,
             'items'     => (new Order($this->database))->items($id),
             'invoice'   => (new Order($this->database))->invoice($id),
             'history'   => (new Order($this->database))->history($id),

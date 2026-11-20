@@ -48,7 +48,7 @@ flowchart LR
    - pose `@current_user_id`, `@client_ip`, `@client_ua` via `Database::setAuditContext()` (**RG-11**) ;
    - configure `AuditService` avec le même contexte ;
    - délègue au `Router`.
-4. `Router::dispatch()` parcourt les 23 routes ; `GET /produit/{slug}` correspond.
+4. `Router::dispatch()` parcourt les 26 routes ; `GET /produit/{slug}` correspond.
    - `setRouteParams(['slug' => 'vase-bleu-et-blanc'])` ;
    - aucun middleware pour cette route ;
    - `callHandler()` instancie `CatalogController` avec ses dépendances.
@@ -119,7 +119,7 @@ Fournit `render()`, `json()`, `redirect()` et conserve les trois dépendances pa
 
 ## 4. Table de routage (`config/routes.php`)
 
-23 routes au format `[MÉTHODE, CHEMIN, Contrôleur@action, MIDDLEWARES, NOM]`.
+26 routes au format `[MÉTHODE, CHEMIN, Contrôleur@action, MIDDLEWARES, NOM]`.
 
 | Groupe | Routes | Middlewares |
 |---|---|---|

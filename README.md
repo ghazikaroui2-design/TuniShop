@@ -95,13 +95,13 @@ TuniShop/
 | Document | Contenu |
 |---|---|
 | [Synthèse backend](docs/05_backend/README.md) | Périmètre, fichiers livrés, validation, couverture RG-01 → RG-11, choix techniques |
-| [Architecture MVC](docs/05_backend/architecture_mvc.md) | Routeur frontal, composants Core, 23 routes, middlewares, modèles, services, sécurité |
+| [Architecture MVC](docs/05_backend/architecture_mvc.md) | Routeur frontal, composants Core, 26 routes, middlewares, modèles, services, sécurité |
 | [Diagrammes UML](docs/05_backend/diagrammes_uml.md) | Cas d'utilisation, classes, 4 séquences, composants, états commande/boutique (Mermaid) |
 | [Concepts POO / SOLID](docs/05_backend/poo_concepts.md) | 4 piliers, SOLID, 10 patterns, PHP 8.3, démonstration soutenance |
 | [Socle applicatif](public/index.php) | Point d'entrée HTTP — `php -S localhost:8000 -t public` |
-| [Tests de recette](tests/run.php) | **23 tests PASS / 0 FAIL** — `composer test` |
+| [Tests de recette](tests/run.php) | **24 tests PASS / 0 FAIL** — `composer test` |
 
-> ✅ Socle MVC exécutable : autoload PSR-4, PHP linté, 23 tests verts. Couche Services branchée sur les procédures stockées de la BDD (panier, commande, paiement sandbox, audit).
+> ✅ Socle MVC exécutable : autoload PSR-4, PHP linté, 24 tests verts. Couche Services branchée sur les procédures stockées de la BDD (panier, commande, paiement sandbox, audit).
 
 ### Livrables E-commerce (disponibles — jalon 10/01)
 
@@ -128,7 +128,20 @@ TuniShop/
 | [Recette sécurité](docs/07_securite/tests_securite.md) | 18 scénarios S01–S18 et résultats |
 | [Tests](tests/security.php) | **18 tests PASS / 0 FAIL** — `composer test:security` |
 
-> ✅ Sécurité durcie : en-têtes de sécurité globaux (CSP, nosniff, anti-clickjacking), Argon2id, 5 tentatives max, RBAC côté serveur, audit des refus. **81 tests au vert** au total (23 MVC + 15 E-commerce + 18 Sécurité + 25 SQL).
+> ✅ Sécurité durcie : en-têtes de sécurité globaux (CSP, nosniff, anti-clickjacking), Argon2id, 5 tentatives max, RBAC côté serveur, audit des refus.
+
+### Livrables Frontend (disponibles — jalon 20/11)
+
+| Document | Contenu |
+|---|---|
+| [Synthèse frontend](docs/03_frontend/README.md) | Design system, matrice des 12 écrans, responsive, accessibilité, CSP |
+| [Matrice des écrans](docs/03_frontend/matrice_ecrans.md) | Prototype → vue MVC → route → contrôleur, pour les 12 écrans |
+| [Accessibilité & responsive](docs/03_frontend/accessibilite_responsive.md) | WCAG 2.1 AA, 320/640/1024 px, focus, lecteurs d'écran |
+| [Comportements JS](docs/03_frontend/comportements_js.md) | Hooks `data-*`, navigation, filtres, toasts, onglets, carte sandbox |
+| [Recette frontend](docs/03_frontend/recette_frontend.md) | 12 scénarios F01–F12 et résultats |
+| [Tests](tests/frontend.php) | **12 tests PASS / 0 FAIL** — `composer test:frontend` |
+
+> ✅ Intégration frontend livrée : design system « Bleu de Sidi Bou », 12 écrans câblés sur le MVC, JS externe conforme CSP, responsive 320/640/1024 px+ et accessibilité WCAG 2.1 AA. **94 tests au vert** au total (24 MVC + 15 E-commerce + 18 Sécurité + 12 Frontend + 25 SQL).
 
 ---
 

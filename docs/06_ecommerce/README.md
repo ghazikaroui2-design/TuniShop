@@ -33,7 +33,7 @@
 | `app/Views/cart/index.php` | Modification de quantité + suppression |
 | `app/Views/order/confirmation.php` | Lien de téléchargement de la facture |
 | `app/Views/invoices/pdf.php` | Gabarit HTML de la facture A4 |
-| `config/routes.php` | Route supplémentaire `GET /commande/{id}/facture.pdf` (23 routes au total) |
+| `config/routes.php` | Route supplémentaire `GET /commande/{id}/facture.pdf` (23 routes à l'issue du module, 26 après intégration frontend) |
 | `tests/ecommerce.php` | Recette CLI du module (15 tests) |
 
 ---

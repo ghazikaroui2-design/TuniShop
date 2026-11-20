@@ -26,10 +26,12 @@ final class CatalogController extends Controller
         $categories = new Category($this->database);
 
         return $this->render('catalog/index', [
-            'pageTitle' => 'Catalogue',
-            'products'  => $products->catalogue($filters, 24),
-            'categories' => $categories->active(),
-            'filters'   => $filters,
+            'pageTitle'     => 'Catalogue',
+            'pageDescription' => 'Découvrez le catalogue TuniShop : céramique, tapis, parfums et bijoux faits main à Sidi Bou Saïd.',
+            'products'      => $products->catalogue($filters, 24),
+            'categories'    => $categories->active(),
+            'filters'       => $filters,
+            'breadcrumb'    => ['Catalogue' => null],
         ]);
     }
 
@@ -42,11 +44,28 @@ final class CatalogController extends Controller
             throw new NotFoundException('Ce produit est introuvable ou n’est plus disponible.');
         }
 
+        $publicPath = dirname(__DIR__, 2) . '/public/';
+        $images = array_map(static function (array $image) use ($publicPath): array {
+            $relative = ltrim((string) $image['image_path'], '/');
+            $image['src'] = '/' . $relative;
+            // Les visuels de démonstration ne sont pas livrés dans le dépôt :
+            // on affiche alors une illustration textuelle plutôt qu'une image cassée.
+            $image['exists'] = $relative !== '' && is_file($publicPath . $relative);
+
+            return $image;
+        }, $products->images((int) $product['id']));
+
         return $this->render('catalog/show', [
-            'pageTitle' => $product['name'],
-            'product'   => $product,
-            'images'    => $products->images((int) $product['id']),
-            'csrf'      => $this->session->csrfToken(),
+            'pageTitle'       => $product['name'],
+            'pageDescription' => $product['short_description'] ?? $product['name'] . ' — fait main à Sidi Bou Saïd.',
+            'product'         => $product,
+            'images'          => $images,
+            'csrf'            => $this->session->csrfToken(),
+            'breadcrumb'      => [
+                'Catalogue'                      => '/catalogue',
+                $product['category_name'] ?? ''  => '/catalogue?category=' . ($product['category_slug'] ?? ''),
+                $product['name']                 => null,
+            ],
         ]);
     }
 }

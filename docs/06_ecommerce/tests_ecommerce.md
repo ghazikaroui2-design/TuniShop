@@ -63,7 +63,7 @@ Vérifie que `composer.json`, `composer.lock` et `vendor/autoload.php` sont coh�
 
 ### E02 — Route de facture
 
-Recherche de la route nommée `order.invoice` dans `config/routes.php` : méthode `GET`, chemin `/commande/{id}/facture.pdf`, middleware `auth`. Le passage de 22 à **23 routes** est ainsi figé par un test.
+Recherche de la route nommée `order.invoice` dans `config/routes.php` : méthode `GET`, chemin `/commande/{id}/facture.pdf`, middleware `auth`. Le passage de 22 à **23 routes** est ainsi figé par un test (le test T02 du socle vérifie désormais les 26 routes après intégration frontend).
 
 ### E03 — Étape 1 du tunnel
 

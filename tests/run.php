@@ -86,7 +86,30 @@ $t->check('T01 — Autoload PSR-4 des classes App\\', static fn () =>
     && class_exists(\App\Services\OrderService::class)
 );
 
-$t->check('T02 — 23 routes déclarées', static fn () => count($routes) === 23);
+$t->check('T02 — 26 routes déclarées', static fn () => count($routes) === 26);
+
+$t->check('T02b — Routes frontend /compte et /vendeur/boutique protégées', static function () use ($routes) {
+    $find = static function (string $method, string $path) use ($routes): ?array {
+        foreach ($routes as $route) {
+            if ($route[0] === $method && $route[1] === $path) {
+                return $route;
+            }
+        }
+
+        return null;
+    };
+
+    $account = $find('GET', '/compte');
+    $shopGet = $find('GET', '/vendeur/boutique');
+    $shopPost = $find('POST', '/vendeur/boutique');
+
+    return $account !== null
+        && in_array('auth', $account[3], true)
+        && $shopGet !== null
+        && in_array('role:vendeur', $shopGet[3], true)
+        && $shopPost !== null
+        && in_array('csrf', $shopPost[3], true);
+});
 
 $t->check('T03 — Normalisation des chemins', static fn () =>
     Request::normalizePath('/catalogue/') === '/catalogue'

@@ -27,7 +27,7 @@
 | `.env.example` | Configuration locale (jamais de secret versionné) |
 | `config/app.php` | Paramètres applicatifs, session, RG-02/RG-03, RG-10 |
 | `config/database.php` | Connexion PDO et options de sécurité |
-| `config/routes.php` | **23 routes** nommées, avec middlewares (dont `order.invoice`) |
+| `config/routes.php` | **26 routes** nommées, avec middlewares (dont `order.invoice`, `account.index`, `seller.shop`) |
 | `public/index.php` | Routeur frontal, unique point d'entrée HTTP |
 | `app/Core/` | `Application`, `Router`, `Request`, `Response`, `Session`, `View`, `Database`, `Controller` |
 | `app/Middlewares/` | `AuthMiddleware`, `RoleMiddleware`, `CsrfMiddleware`, `MiddlewareInterface` |
@@ -37,7 +37,7 @@
 | `app/Views/` | Gabarits PHP : layout, accueil, catalogue, panier, checkout, auth, confirmation, dashboard |
 | `app/Exceptions/` | `HttpException`, `NotFoundException`, `ForbiddenException`, `ValidationException` |
 | `public/assets/css/app.css` | Feuille de style du socle (responsive) |
-| `tests/run.php` | **23 tests de recette** CLI |
+| `tests/run.php` | **24 tests de recette** CLI |
 
 ---
 
@@ -56,11 +56,11 @@ Get-ChildItem -Path app,config,public,tests -Recurse -Filter *.php | % { & $php 
 # ou : & 'C:\Users\USER\AppData\Local\Composer\composer.bat' test
 ```
 
-**Résultat final : `23 PASS / 0 FAIL`** ✅
+**Résultat final : `24 PASS / 0 FAIL`** ✅
 
 | Groupe | Tests | Vérifications |
 |---|---|---|
-| Structure & autoload | T01–T03 | PSR-4, 23 routes, normalisation des URL |
+| Structure & autoload | T01–T03 | PSR-4, 26 routes, normalisation des URL |
 | Composants Core | T04–T06 | JSON, échappement HTML, jeton CSRF |
 | Middlewares | T07–T09 | blocage CSRF (419), RBAC (403) |
 | Routage / rendu | T10–T16 | accueil, catalogue, `{slug}`, API, santé, 302, 404 |

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Controllers\AccountController;
 use App\Controllers\AdminController;
 use App\Controllers\ApiController;
 use App\Controllers\AuthController;
@@ -41,8 +42,13 @@ return [
     ['GET',  '/commande/{id}',           OrderController::class . '@confirmation', ['auth'],                   'order.confirmation'],
     ['GET',  '/commande/{id}/facture.pdf', OrderController::class . '@invoice',      ['auth'],                   'order.invoice'],
 
+    // ---- Espace client (FR-07, FR-27) ----
+    ['GET',  '/compte',                  AccountController::class . '@index',       ['auth'],                   'account.index'],
+
     // ---- Espace vendeur (RBAC) ----
     ['GET',  '/vendeur',                 SellerController::class . '@dashboard',   ['auth', 'role:vendeur'],   'seller.dashboard'],
+    ['GET',  '/vendeur/boutique',        SellerController::class . '@shopForm',     ['auth', 'role:vendeur'],   'seller.shop'],
+    ['POST', '/vendeur/boutique',        SellerController::class . '@shopUpdate',   ['auth', 'role:vendeur', 'csrf'], 'seller.shop.update'],
     ['GET',  '/vendeur/produits',        SellerController::class . '@products',    ['auth', 'role:vendeur'],   'seller.products'],
     ['GET',  '/vendeur/commandes',       SellerController::class . '@orders',      ['auth', 'role:vendeur'],   'seller.orders'],
 

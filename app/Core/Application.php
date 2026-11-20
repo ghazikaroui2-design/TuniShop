@@ -30,6 +30,8 @@ final class Application
             'baseUrl' => $config['app']['base_url'],
             'appEnv'  => $config['app']['env'],
             'pricing' => $config['app']['pricing'],
+            // Partagé avec le layout : état de connexion, rôle et jeton CSRF.
+            'session' => $this->session,
         ]);
         $this->router = new Router($routes, $this->database, $this->session, $this->view);
 
