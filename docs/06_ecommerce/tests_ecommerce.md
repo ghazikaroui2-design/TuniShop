@@ -14,7 +14,7 @@
 # Ou via Composer
 & 'C:\Users\USER\AppData\Local\Composer\composer.bat' test:ecommerce
 
-# Toutes les recettes (socle MVC + e-commerce)
+# Toutes les recettes (socle MVC + e-commerce + sécurité)
 & 'C:\Users\USER\AppData\Local\Composer\composer.bat' test:all
 
 # Vérification SQL (jeu d'essai inchangé)
@@ -172,5 +172,6 @@ PASS  E15 — Accès refusé à la facture d’un autre client
 |---|---|---|
 | Socle MVC | `composer test` | 23 PASS / 0 FAIL |
 | E-commerce | `composer test:ecommerce` | 15 PASS / 0 FAIL |
+| Sécurité | `composer test:security` | 18 PASS / 0 FAIL |
 | Base de données | `database/tests.sql` | 25 PASS / 0 FAIL |
-| **Total** | `composer test:all` + SQL | **63 PASS / 0 FAIL** |
+| **Total** | `composer test:all` + SQL | **81 PASS / 0 FAIL** |

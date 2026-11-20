@@ -8,6 +8,7 @@ use App\Core\Request;
 use App\Core\Response;
 use App\Core\Session;
 use App\Exceptions\ForbiddenException;
+use App\Services\AuditService;
 
 /** FR-27 : contrôle d'accès par rôle, côté serveur. */
 final class RoleMiddleware implements MiddlewareInterface
@@ -24,6 +25,9 @@ final class RoleMiddleware implements MiddlewareInterface
         $role = $this->session->role();
 
         if ($role === null || !in_array($role, $this->allowedRoles, true)) {
+            // RG-11 : toute tentative d'accès refusée est tracée.
+            AuditService::log('ACCESS_DENIED', 'routes', null, $request->path() . ' | role=' . ($role ?? 'anonymous'));
+
             throw new ForbiddenException(
                 'Accès réservé au rôle : ' . implode(' ou ', $this->allowedRoles)
             );

@@ -72,13 +72,20 @@ final class Session
         unset($store[$key]);
     }
 
-    /** Prévention de la fixation de session (NFR-01). */
+    /**
+     * Prévention de la fixation de session (NFR-01).
+     *
+     * Le jeton CSRF est régénéré en même temps que l'identifiant de session :
+     * un jeton créé avant l'authentification ne peut donc pas être réutilisé
+     * après le changement de privilège (OWASP A01).
+     */
     public function regenerate(): void
     {
         $store = &$this->store();
         if (PHP_SAPI !== 'cli' && session_status() === PHP_SESSION_ACTIVE) {
             session_regenerate_id(true);
         }
+        unset($store['_csrf']);
         $store['_regenerated'] = true;
     }
 

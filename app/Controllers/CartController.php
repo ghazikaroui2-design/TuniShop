@@ -9,6 +9,7 @@ use App\Core\Request;
 use App\Core\Response;
 use App\Models\Cart;
 use App\Services\CartService;
+use App\Services\InputSanitizer;
 use PDOException;
 
 final class CartController extends Controller
@@ -41,8 +42,8 @@ final class CartController extends Controller
     {
         try {
             $this->service()->add(
-                (int) $request->input('product_id', 0),
-                (int) $request->input('quantity', 1)
+                InputSanitizer::int($request, 'product_id', 0, 0, 1000000),
+                InputSanitizer::int($request, 'quantity', 1, 1, 99)
             );
             $this->session->flash('success', 'Produit ajouté au panier.');
         } catch (PDOException) {
@@ -55,7 +56,10 @@ final class CartController extends Controller
     public function remove(Request $request): Response
     {
         $service = $this->service();
-        $service->remove($service->currentCartId(), (int) $request->input('product_id', 0));
+        $service->remove(
+            $service->currentCartId(),
+            InputSanitizer::int($request, 'product_id', 0, 0, 1000000)
+        );
         $this->session->flash('success', 'Article retiré du panier.');
 
         return $this->redirect('/panier');

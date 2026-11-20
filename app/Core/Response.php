@@ -6,14 +6,41 @@ namespace App\Core;
 
 /**
  * Réponse HTTP immuable : statut, en-têtes et corps.
+ *
+ * NFR-01 / OWASP : les en-têtes de sécurité sont appliqués à TOUTES les
+ * réponses, y compris les erreurs, avant même les en-têtes métier.
  */
 final class Response
 {
-    public function __construct(
-        public readonly string $body = '',
-        public readonly int $status = 200,
-        public readonly array $headers = [],
-    ) {
+    public readonly string $body;
+    public readonly int $status;
+    public readonly array $headers;
+
+    /** @param array<string, string> $headers */
+    public function __construct(string $body = '', int $status = 200, array $headers = [])
+    {
+        $this->body = $body;
+        $this->status = $status;
+        $this->headers = self::securityHeaders() + $headers;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function securityHeaders(): array
+    {
+        return [
+            'X-Content-Type-Options' => 'nosniff',
+            'X-Frame-Options'        => 'DENY',
+            'Referrer-Policy'        => 'strict-origin-when-cross-origin',
+            'Permissions-Policy'     => 'geolocation=(), camera=(), microphone=(), payment=()',
+            // Aucun <script> inline dans les vues ; les styles inline sont
+            // autorisés pour les composants du prototype responsive.
+            'Content-Security-Policy' => "default-src 'self'; base-uri 'self';"
+                . " form-action 'self'; frame-ancestors 'none'; object-src 'none';"
+                . " img-src 'self' data:; style-src 'self' 'unsafe-inline';"
+                . " script-src 'self'; connect-src 'self'",
+        ];
     }
 
     public static function html(string $body, int $status = 200, array $headers = []): self
@@ -25,10 +52,7 @@ final class Response
     {
         $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
 
-        return new self($json, $status, [
-            'Content-Type' => 'application/json; charset=utf-8',
-            'X-Content-Type-Options' => 'nosniff',
-        ]);
+        return new self($json, $status, ['Content-Type' => 'application/json; charset=utf-8']);
     }
 
     public static function redirect(string $url, int $status = 302): self

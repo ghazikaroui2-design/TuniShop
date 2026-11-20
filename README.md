@@ -18,7 +18,7 @@ TuniShop/
 │   ├── 04_bdd/              ← dictionnaire, MCD/MLD, scripts SQL
 │   ├── 05_backend/          ← UML, architecture MVC, POO/SOLID (livré ✅)
 │   ├── 06_ecommerce/        ← panier, checkout, paiement sandbox, factures PDF (livré ✅)
-│   ├── 07_securite/         ← authentification, RBAC, audit OWASP
+│   ├── 07_securite/         ← authentification, RBAC, audit OWASP (livré ✅)
 │   ├── 08_seo_marketing/    ← SEO, sitemap, plan de lancement digital
 │   └── 09_soutenance/       ← support de présentation, démo, manuel utilisateur
 ├── public/                  ← point d'entrée web, assets, uploads, sitemap.xml, robots.txt
@@ -114,7 +114,21 @@ TuniShop/
 | [Recette E-commerce](docs/06_ecommerce/tests_ecommerce.md) | 15 scénarios E01–E15 et résultats |
 | [Tests](tests/ecommerce.php) | **15 tests PASS / 0 FAIL** — `composer test:ecommerce` |
 
-> ✅ Module transactionnel livré : panier persistant, checkout en 3 étapes, code promo, paiement simulé sans donnée bancaire, facture PDF téléchargeable par le client propriétaire ou l'administrateur. **63 tests au vert** au total (23 MVC + 15 E-commerce + 25 SQL).
+> ✅ Module transactionnel livré : panier persistant, checkout en 3 étapes, code promo, paiement simulé sans donnée bancaire, facture PDF téléchargeable par le client propriétaire ou l'administrateur.
+
+### Livrables Sécurité / OWASP (disponibles — jalon 24/01)
+
+| Document | Contenu |
+|---|---|
+| [Synthèse sécurité](docs/07_securite/README.md) | Modèle de menace, contrôles, résultat des tests, état d'avancement |
+| [Authentification](docs/07_securite/authentification.md) | Argon2id, politique de mot de passe, verrou anti-force-brute, anti-énumération, cookies |
+| [RBAC](docs/07_securite/rbac.md) | 4 rôles, matrice des routes, middlewares, protection contre l'IDOR |
+| [OWASP Top 10](docs/07_securite/owasp_top10.md) | Les 10 catégories 2021, contrôles TuniShop et preuves de test |
+| [Checklist sécurité](docs/07_securite/checklist_securite.md) | Audit NFR-01 case par case, règles d'or du dépôt, plan de remédiation |
+| [Recette sécurité](docs/07_securite/tests_securite.md) | 18 scénarios S01–S18 et résultats |
+| [Tests](tests/security.php) | **18 tests PASS / 0 FAIL** — `composer test:security` |
+
+> ✅ Sécurité durcie : en-têtes de sécurité globaux (CSP, nosniff, anti-clickjacking), Argon2id, 5 tentatives max, RBAC côté serveur, audit des refus. **81 tests au vert** au total (23 MVC + 15 E-commerce + 18 Sécurité + 25 SQL).
 
 ---
 

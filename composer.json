@@ -24,9 +24,11 @@
     "scripts": {
         "test": "@php tests/run.php",
         "test:ecommerce": "@php tests/ecommerce.php",
+        "test:security": "@php tests/security.php",
         "test:all": [
             "@php tests/run.php",
-            "@php tests/ecommerce.php"
+            "@php tests/ecommerce.php",
+            "@php tests/security.php"
         ]
     },
     "config": {

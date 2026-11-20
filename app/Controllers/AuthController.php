@@ -10,10 +10,21 @@ use App\Core\Response;
 use App\Exceptions\ValidationException;
 use App\Models\User;
 use App\Services\AuditService;
+use App\Services\InputSanitizer;
+use App\Services\LoginThrottle;
+use App\Services\PasswordPolicy;
 
 /** Authentification, inscription et déconnexion (FR-01 à FR-04, RG-09, RG-11). */
 final class AuthController extends Controller
 {
+    /**
+     * Empreinte Argon2id fictive, vérifiée quand l'utilisateur n'existe pas,
+     * afin d'égaliser le temps de réponse et d'éviter l'énumération de comptes.
+     */
+    private const DUMMY_HASH = '$argon2id$v=19$m=65536,t=4,p=1$ak9jS1JmNDZQcUJ4WkJ1Mg$U5KKanIp96nXauuSfYBZAjxzdxug9DvnGVdSWG1DigI';
+
+    private const GENERIC_ERROR = 'Email ou mot de passe incorrect.';
+
     public function loginForm(Request $request): Response
     {
         return $this->render('auth/login', [
@@ -26,20 +37,35 @@ final class AuthController extends Controller
 
     public function login(Request $request): Response
     {
-        $email = (string) $request->input('email', '');
-        $password = (string) $request->input('password', '');
+        $throttle = new LoginThrottle($this->session);
+
+        if ($throttle->isLocked()) {
+            AuditService::log('LOGIN_THROTTLED', 'users', null, 'Verrou temporaire');
+            $this->session->flash('error', 'Trop de tentatives de connexion. Réessayez dans '
+                . $throttle->retryAfter() . ' secondes.');
+
+            return $this->redirect('/connexion');
+        }
+
+        $email = InputSanitizer::email($request);
+        $password = InputSanitizer::rawString($request, 'password');
 
         $users = new User($this->database);
         $user = $users->verify($email, $password);
 
         if ($user === null) {
+            // Même coût de calcul pour un email inconnu (anti-énumération).
+            password_verify($password, self::DUMMY_HASH);
+            $throttle->recordFailure();
             AuditService::log('LOGIN_FAILED', 'users', null, $email);
-            $this->session->flash('error', 'Email ou mot de passe incorrect.');
+            $this->session->flash('error', self::GENERIC_ERROR);
 
             return $this->redirect('/connexion');
         }
 
-        // Prévention de la fixation de session (NFR-01)
+        $throttle->reset();
+
+        // Prévention de la fixation de session (NFR-01) + rotation du jeton CSRF.
         $this->session->regenerate();
         $this->session->setUser([
             'id'         => (int) $user['id'],
@@ -66,24 +92,28 @@ final class AuthController extends Controller
 
     public function register(Request $request): Response
     {
-        $email = mb_strtolower(trim((string) $request->input('email', '')));
-        $password = (string) $request->input('password', '');
-        $firstName = trim((string) $request->input('first_name', ''));
-        $lastName = trim((string) $request->input('last_name', ''));
+        $email = InputSanitizer::email($request);
+        $password = InputSanitizer::rawString($request, 'password');
+        $firstName = InputSanitizer::label($request, 'first_name', 100);
+        $lastName = InputSanitizer::label($request, 'last_name', 100);
+        $phone = InputSanitizer::label($request, 'phone', 30);
+        if ($phone === '') {
+            $phone = null;
+        }
 
         $errors = [];
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ($email === '') {
             $errors['email'] = 'Adresse email invalide.';
         }
-        if (mb_strlen($password) < 8) {
-            $errors['password'] = 'Le mot de passe doit contenir au moins 8 caractères.';
+        if (PasswordPolicy::errors($password) !== []) {
+            $errors['password'] = implode(' ', PasswordPolicy::errors($password));
         }
         if ($firstName === '' || $lastName === '') {
             $errors['name'] = 'Le prénom et le nom sont obligatoires.';
         }
 
         $users = new User($this->database);
-        if ($users->emailExists($email)) {
+        if ($email !== '' && $users->emailExists($email)) {
             $errors['email'] = 'Cette adresse email est déjà utilisée.';
         }
 
@@ -91,8 +121,7 @@ final class AuthController extends Controller
             throw new ValidationException($errors, 'Inscription invalide.');
         }
 
-        $id = $users->createClient($email, $password, $firstName, $lastName,
-            is_string($request->input('phone')) ? $request->input('phone') : null);
+        $id = $users->createClient($email, $password, $firstName, $lastName, $phone);
 
         AuditService::log('USER_REGISTERED', 'users', (string) $id, $email);
         $this->session->flash('success', 'Compte créé. Vous pouvez vous connecter.');

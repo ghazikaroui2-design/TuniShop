@@ -91,7 +91,7 @@ flowchart LR
 & 'C:\xampp\mysql\bin\mysql.exe' -u root -e "SOURCE C:/Users/USER/OneDrive/Desktop/TuniShop/database/tests.sql"  # 25 PASS / 0 FAIL
 ```
 
-**Résultat final : 23 + 15 + 25 = 63 tests au vert** ✅
+**Résultat final à ce stade : 23 + 15 + 18 (sécurité) + 25 = 81 tests au vert** ✅
 
 > Les tests e-commerce créent des paniers et commandes temporaires puis les suppriment : le jeu d’essai de démonstration reste inchangé (vérifié par les 25 tests SQL après exécution).
 
