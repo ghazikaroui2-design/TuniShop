@@ -48,7 +48,7 @@ TuniShop/
 
 **Environnement cible :** `http://localhost/tunishop/public/`
 
-> Git et Composer ne sont pas encore installés sur la machine de développement (état au 20/11/2026) : voir `docs/01_gestion_projet/git_workflow.md` pour l'installation et les conventions.
+> ✅ **Git 2.56.1** est installé et le dépôt est initialisé (`main` + `develop`, commit initial `5a6caeb`). ⚠️ **Composer** reste à installer avant S3 (le setup est dans `Downloads`) : voir `docs/01_gestion_projet/git_workflow.md`.
 
 ---
 

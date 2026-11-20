@@ -249,7 +249,7 @@ Rythme Agile : **5 sprints de 2 semaines**, revues aux jalons S2, S5, S8 ; voir 
 |---|---|---|---|
 | Retard sur le jalon Validation 2 (S5) | Moyenne | Fort | Découpage en sprints de 2 semaines, suivi hebdomadaire, périmètre Could déplaçable en S10 |
 | Périmètre trop large pour 10 semaines | Forte | Fort | Priorisation MoSCoW, gel du périmètre à S2, éléments « Could » en backlog de réserve |
-| Git / Composer non installés | Forte | Moyen | Installation en début de projet (voir `git_workflow.md`), procédure d'autoload de secours documentée |
+| Composer non installé (Git opérationnel depuis S1) | Moyenne | Moyen | Installation avec `C:\xampp\php\php.exe` (voir `git_workflow.md`), autoload de secours documenté |
 | Conflits de fusion entre membres | Moyenne | Moyen | Branches par fonctionnalité, commits atomiques, revue avant merge sur `develop` |
 | Jeu de données irréaliste | Moyenne | Faible | Jeu d'essai construit à partir de vrais produits/artisans de Sidi Bou Saïd |
 | Mauvais fonctionnement du trigger de stock | Moyenne | Fort | Tests SQL dédiés + transaction sur le checkout + verrouillage `FOR UPDATE` |

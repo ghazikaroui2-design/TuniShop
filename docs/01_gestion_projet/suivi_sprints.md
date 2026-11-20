@@ -52,7 +52,7 @@
 | US-001 | Rédiger le cahier des charges | 5 | Chef de projet | ✅ Terminé (v1.0) |
 | US-002 | Construire le backlog produit | 3 | Chef de projet | ✅ Terminé (v1.0) |
 | US-003 | Élaborer le planning Gantt | 3 | Chef de projet | ✅ Terminé (v1.0) |
-| US-004 | Initialiser le dépôt et les conventions Git | 2 | Back-end | 🟡 À finaliser (Git non installé) |
+| US-004 | Initialiser le dépôt et les conventions Git | 2 | Back-end | ✅ Terminé (Git 2.56.1, commit `5a6caeb`) |
 | US-005 | Répartir les rôles et planifier les rituels | 2 | Chef de projet | 🟡 Noms à compléter |
 | US-006 | Créer les 3 personas (+ 1 secondaire) | 2 | UX/UI | ✅ Terminé |
 | US-007 | Dessiner les user flows (7 flux Mermaid) | 2 | UX/UI | ✅ Terminé |
@@ -60,7 +60,7 @@
 | US-009 | Wireframes back-office | 3 | UX/UI | ✅ Terminé (HTML + ASCII) |
 | US-010 | Dossier de recette / validation 1 | 2 | Chef de projet | ✅ Terminé (checklist dans ce document) |
 
-**Points validés : 23 / 27 · 4 points en attente d'action externe (installation Git/Composer, noms de l'équipe) · Jours restants : 5**
+**Points validés : 25 / 27 · 2 points en attente (noms des membres dans US-005) · Jours restants : 5**
 
 > Le prototype cliquable livré (12 écrans, 3 supports) couvre les US-006 à US-009 et anticipe une partie de l'US-012/US-013 (prototype Figma) prévue en Sprint 2.
 
@@ -101,8 +101,9 @@
 - [x] Wireframes back-office (US-009)
 - [x] Personas & user flows (US-006, US-007) — prototype cliquable livré en plus
 - [x] Dossier de recette (US-010)
-- [ ] Comptes rendus de réunion / noms des membres (US-005)
-- [ ] Installation Git / Composer (US-004)
+- [x] Installation Git + initialisation du dépôt (US-004 — commit `5a6caeb`)
+- [ ] Noms des 4 membres dans le planning (US-005)
+- [ ] Installation de Composer (avant S3 — hors jalon 1)
 
 ### ⚪ Validation 2 — 20/12/2026
 
@@ -131,7 +132,7 @@
 |---|---|---|---|---|---|---|
 | R-01 | Retard sur la validation 2 (S5) | Moyenne | Fort | Chef de projet | Suivi hebdomadaire, périmètre gelé à S2 | 🟢 Ouvert |
 | R-02 | Périmètre trop large | Forte | Fort | PO | MoSCoW, réserve V1.1 | 🟢 Ouvert |
-| R-03 | Git / Composer absents | Forte | Moyen | Back-end | Installation S1, autoload de secours | 🟠 En cours |
+| R-03 | Composer absent (Git OK depuis S1) | Moyenne | Moyen | Back-end | Installer avec `C:\xampp\php\php.exe`, autoload de secours documenté | 🟠 En cours |
 | R-04 | Conflits de merge | Moyenne | Moyen | Back-end | Branches feature + PR | 🟢 Ouvert |
 | R-05 | Trigger de stock défaillant | Moyenne | Fort | BDD | Tests SQL + transaction | 🟢 Ouvert |
 | R-06 | Jeu de données irréaliste | Moyenne | Faible | BDD | Produits/artisans inspirés de Sidi Bou Saïd | 🟢 Ouvert |
@@ -150,6 +151,7 @@
 | DEC-004 | 20/11/2026 | Périmètre Must gelé à S2 | Éviter la dérive fonctionnelle |
 | DEC-005 | 20/11/2026 | Paiement **simulé uniquement** | Exigence du cahier des charges, aucun débit réel |
 | DEC-006 | 20/11/2026 | TVA 19 %, livraison 8 DT offerte dès 100 DT | Règles métier RG-02 et RG-03 |
+| DEC-007 | 20/11/2026 | Dépôt Git initialisé sur `main` + `develop` (commit `5a6caeb`), identité Ghazi KAROUI | Traçabilité des livrables et travail collaboratif dès S1 |
 
 ---
 

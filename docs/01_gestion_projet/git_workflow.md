@@ -3,31 +3,53 @@
 | Champ | Valeur |
 |---|---|
 | Version | 1.0 — 20/11/2026 |
-| Statut local | ⚠️ Git et Composer non installés sur la machine au 20/11/2026 |
+| Statut local | ✅ **Git 2.56.1 installé** — dépôt initialisé (`main` + `develop`, commit `5a6caeb`) · ⚠️ **Composer non installé** (setup présent dans `Downloads`) |
 | Objectif | Coordonner 4 développeurs sur 10 semaines sans conflit et livrer un dépôt propre le 24/01/2027 |
 
 ---
 
-## 1. Prérequis (à faire en S1)
+## 1. Prérequis — état vérifié le 20/11/2026
 
-1. Installer **Git** : <https://git-scm.com/download/win> (choisir « Git Bash » + « Add to PATH »).
-2. Installer **Composer** : <https://getcomposer.org/download/> (autoload PSR-4 + DomPDF).
-3. Vérifier :
+| Outil | État | Chemin / version |
+|---|---|---|
+| **Git** | ✅ Installé | `C:\Program Files\Git\cmd\git.exe` — v2.56.1.windows.1 |
+| **PHP (XAMPP)** | ✅ Installé | `C:\xampp\php\php.exe` — v8.3.36 |
+| **Composer** | ❌ Non installé | Setup téléchargé : `C:\Users\USER\Downloads\Composer-Setup.exe` |
+
+> ⚠️ `C:\Program Files\Git\cmd` et `C:\xampp\php` ne figurent pas dans le `PATH` de la session d'automatisation. Utiliser les **chemins absolus** ci-dessus, ou ajouter ces dossiers au PATH utilisateur Windows.
+
+### Finir l'installation de Composer (avant le Sprint 2)
+
+1. Lancer `C:\Users\USER\Downloads\Composer-Setup.exe`.
+2. Lorsque l'assistant demande l'exécutable PHP, indiquer : `C:\xampp\php\php.exe`.
+3. Cocher l'option « Add Composer to my PATH ».
+4. Vérifier dans un **nouveau** terminal (après redémarrage) :
    ```bash
    git --version
+   php --version
    composer --version
    ```
-4. Configurer l'identité (une seule fois) :
-   ```bash
-   git config --global user.name "Prenom NOM"
-   git config --global user.email "prenom.nom@exemple.tn"
-   git config --global core.autocrlf false
-   git config --global init.defaultBranch main
-   ```
+
+### Identité Git (déjà configurée)
+
+```bash
+git config --global user.name      # Ghazi KAROUI
+git config --global user.email     # Ghazikaroui2@gmail.com
+```
+
+### Dépôt déjà initialisé
+
+```bash
+git branch -avv
+# * develop 5a6caeb chore: initialisation du depot et livrables gestion de projet
+#   main    5a6caeb chore: initialisation du depot et livrables gestion de projet
+```
 
 ---
 
 ## 2. Initialisation du dépôt
+
+> ✅ **Déjà réalisée le 20/11/2026** (commit `5a6caeb` sur `main` et `develop`). Ne pas réexécuter `git init`. Les commandes ci-dessous restent la procédure de référence pour un nouvel environnement.
 
 ```bash
 cd C:\Users\USER\OneDrive\Desktop\TuniShop
