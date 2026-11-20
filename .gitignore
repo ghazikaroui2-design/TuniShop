@@ -1,0 +1,49 @@
+# ============================================================
+# TuniShop — Fichiers et dossiers ignorés par Git
+# ============================================================
+
+# Dépendances
+/vendor/
+/node_modules/
+
+# Environnement et secrets
+.env
+.env.*
+!.env.example
+config/database.local.php
+config/credentials.php
+
+# Sessions, cache et logs
+/sessions/
+/cache/
+/storage/logs/
+*.log
+error_log
+
+# Contenu utilisateur (à versionner séparément si besoin)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Fichiers générés
+/public/factures/*.pdf
+/tests/output/
+*.tmp
+*.bak
+
+# Éditeurs et IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+
+# Système d'exploitation
+.DS_Store
+Thumbs.db
+desktop.ini
+*.lnk
+
+# Fichiers bureautiques temporaires
+~$*
+*.docx~
+*.pptx~

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TuniShop — Diagramme de Gantt (16/11/2026 → 25/01/2027)</title>
+<style>
+  :root{
+    --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc;
+    --label-width:330px; --cols:11;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:28px;background:var(--bg);color:var(--ink);
+       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:13px}
+  .sheet{max-width:1500px;margin:0 auto;background:#fff;border:1px solid var(--line);
+         border-radius:14px;padding:26px 28px 20px;box-shadow:0 8px 30px rgba(15,23,42,.06)}
+  header h1{margin:0 0 4px;font-size:24px;letter-spacing:-.4px}
+  header .sub{color:var(--muted);margin-bottom:18px}
+  header .sub strong{color:#0e7490}
+  .badges{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
+  .badge{background:#f1f5f9;border:1px solid var(--line);border-radius:999px;
+         padding:5px 11px;font-size:11px;color:#475569}
+  .badge b{color:var(--ink)}
+
+  /* Grille */
+  .chart{min-width:1180px;overflow:visible}
+  .head,.row{display:grid;grid-template-columns:var(--label-width) 1fr;align-items:stretch}
+  .head{position:sticky;top:0;z-index:5;background:#fff;border-bottom:2px solid #cbd5e1}
+  .head-label{padding:10px 12px;font-weight:700;color:#475569;font-size:11px;
+              text-transform:uppercase;letter-spacing:.06em;border-right:1px solid var(--line)}
+  .track{position:relative;display:grid;grid-template-columns:repeat(var(--cols),1fr);min-width:850px}
+  .week{text-align:center;padding:9px 0;font-weight:700;font-size:11px;color:#475569;
+        border-right:1px solid var(--line)}
+  .week:last-child{border-right:0}
+  .week small{display:block;font-weight:400;color:#94a3b8;font-size:9px}
+
+  .group-title{margin-top:14px;padding:7px 12px;border-radius:7px;font-weight:700;
+               font-size:12px;color:#fff;display:flex;justify-content:space-between}
+  .group-title span{font-weight:400;opacity:.85;font-size:11px}
+  .row{min-height:30px;border-bottom:1px solid #f1f5f9}
+  .row-label{padding:6px 12px;border-right:1px solid var(--line);color:#334155;
+             white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row-label b{color:#0f172a}
+  .cell{border-right:1px solid #f1f5f9}
+  .cell.jury{background:#fff7ed}
+  .bar{position:absolute;top:5px;height:20px;border-radius:5px;left:calc(var(--s) * 100% / var(--cols) + 3px);
+       width:calc(var(--n) * 100% / var(--cols) - 6px);
+       background:var(--c);border:1px solid rgba(0,0,0,.28);
+       color:#fff;font-size:9.5px;line-height:18px;text-align:center;
+       overflow:hidden;white-space:nowrap;box-shadow:0 1px 2px rgba(15,23,42,.15)}
+  .bar.phase{opacity:.35;height:24px;top:3px}
+  .milestones{display:grid;grid-template-columns:var(--label-width) 1fr;
+              align-items:center;margin-top:16px;padding-top:10px;border-top:2px solid #cbd5e1}
+  .milestones .track{height:46px}
+  .diamond{position:absolute;top:6px;left:calc(var(--s) * 100% / var(--cols));
+           transform:translateX(-50%);width:13px;height:13px;background:#dc2626;
+           border:2px solid #fff;box-shadow:0 0 0 1px #dc2626;transform:translateX(-50%) rotate(45deg)}
+  .milestone-label{position:absolute;top:23px;left:calc(var(--s) * 100% / var(--cols));
+                   transform:translateX(-50%);font-size:9px;color:#b91c1c;font-weight:700;
+                   white-space:nowrap;text-align:center;line-height:1.15}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;padding-top:14px;
+          border-top:1px solid var(--line);font-size:11px;color:#475569}
+  .legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;
+            vertical-align:-1px}
+  .note{margin-top:12px;font-size:10.5px;color:#94a3b8}
+  .scroll{overflow-x:auto;padding-bottom:6px}
+
+  @media print{
+    body{padding:0;background:#fff;font-size:10px}
+    .sheet{border:0;box-shadow:none;padding:0;max-width:none}
+    @page{size:A3 landscape;margin:8mm}
+    .group-title{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .bar,.diamond,.cell.jury{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <h1>🏺 TuniShop Marketplace — Planning de production</h1>
+    <div class="sub">BTS DI 2-1 · <strong>16 novembre 2026 → 25 janvier 2027</strong> · 10 semaines + jury final · Agile : 5 sprints de 2 semaines</div>
+    <div class="badges">
+      <span class="badge">Jalon 1 · <b>29/11</b></span>
+      <span class="badge">Jalon 2 · <b>20/12</b></span>
+      <span class="badge">Préjury · <b>10/01</b></span>
+      <span class="badge">Remise · <b>24/01</b></span>
+      <span class="badge">Jury · <b>25/01</b></span>
+    </div>
+  </header>
+
+  <div class="scroll">
+  <div class="chart" id="chart">
+    <div class="head">
+      <div class="head-label">Lot de travail / Responsable</div>
+      <div class="track" id="headTrack"></div>
+    </div>
+    <div id="groups"></div>
+    <div class="milestones">
+      <div class="head-label">Jalons de validation ◆</div>
+      <div class="track" id="milestoneTrack"></div>
+    </div>
+  </div>
+  </div>
+
+  <div class="legend" id="legend"></div>
+  <div class="note">
+    Source : Cahier des charges pédagogique BTS DI 2-1 (TuniShop), §6 « Organisation et calendrier prévisionnel ».
+    Version tableau et dépendances : <code>planning_gantt.md</code>. Impression : paysage A3.
+  </div>
+  <noscript><p>Le diagramme nécessite JavaScript. Consultez <code>planning_gantt.md</code> pour la version tableau.</p></noscript>
+</div>
+
+<script>
+const WEEKS = [
+  ['S1','16→22 nov'],['S2','23→29 nov'],['S3','30 nov→6 déc'],['S4','7→13 déc'],
+  ['S5','14→20 déc'],['S6','21→27 déc'],['S7','28 déc→3 jan'],['S8','4→10 jan'],
+  ['S9','11→17 jan'],['S10','18→24 jan'],['J','25 jan']
+];
+
+const GROUPS = [
+  {name:'1. Gestion de projet', color:'#64748b', tasks:[
+    ['1.1 Cahier des charges, backlog, Gantt',0,2,'Chef de projet'],
+    ['1.2 Rituels Agile & suivi des sprints',0,10,'Chef de projet'],
+    ['1.3 Revues S2 / S5 / S8 & dossier synthèse',1,10,'Chef de projet'],
+    ['1.4 Manuel utilisateur',8,2,'Chef de projet'],
+  ]},
+  {name:'2. Design UX/UI', color:'#8b5cf6', tasks:[
+    ['2.1 Personas & user flows',1,1,'UX/UI'],
+    ['2.2 Wireframes front-office & back-office',1,1,'UX/UI'],
+    ['2.3 Identité graphique & UI kit',2,1,'UX/UI'],
+    ['2.4 Prototype Figma Desktop & Mobile',2,2,'UX/UI'],
+  ]},
+  {name:'3. Front-end responsive', color:'#0ea5e9', tasks:[
+    ['3.1 Accueil, catalogue, fiche produit',3,1,'Intégrateur'],
+    ['3.2 Espaces client / vendeur / admin',4,1,'Intégrateur'],
+    ['3.3 Vues du tunnel panier / commande',4,2,'Intégrateur'],
+    ['3.4 Accessibilité & finitions',5,1,'Intégrateur'],
+  ]},
+  {name:'4. Base de données', color:'#10b981', tasks:[
+    ['4.1 Dictionnaire de données, MCD, MLD',2,1,'Architecte BDD'],
+    ['4.2 Script SQL & jeu d’essai',3,1,'Architecte BDD'],
+    ['4.3 Vues, procédures stockées & triggers',4,1,'Architecte BDD'],
+    ['4.4 Indexation & contrôle d’intégrité',8,1,'Architecte BDD'],
+  ]},
+  {name:'5. Back-end POO / MVC', color:'#2563eb', tasks:[
+    ['5.1 Diagrammes UML (classes & séquence)',4,1,'Développeur back'],
+    ['5.2 Socle MVC & autoload',4,1,'Développeur back'],
+    ['5.3 CRUD utilisateurs, boutiques, produits, avis',5,1,'Développeur back'],
+    ['5.4 Refactoring & design patterns',8,1,'Développeur back'],
+  ]},
+  {name:'6. Commerce électronique', color:'#f59e0b', tasks:[
+    ['6.1 Panier & calcul des frais',6,1,'E-commerce'],
+    ['6.2 Checkout & confirmation',6,1,'E-commerce'],
+    ['6.3 Paiement sandbox & gestion des stocks',6,2,'E-commerce'],
+    ['6.4 Factures PDF & back-office marchand',7,1,'E-commerce'],
+  ]},
+  {name:'7. Sécurité informatique', color:'#ef4444', tasks:[
+    ['7.1 Authentification sécurisée & RBAC',6,2,'Responsable sécurité'],
+    ['7.2 Protection CSRF / XSS / SQLi',7,1,'Responsable sécurité'],
+    ['7.3 Audit de sécurité & fiches correctives',8,1,'Responsable sécurité'],
+  ]},
+  {name:'8. SEO & Marketing du Web', color:'#ec4899', tasks:[
+    ['8.1 SEO on-page, sitemap.xml, robots.txt',7,1,'Responsable marketing'],
+    ['8.2 Plan de lancement digital & KPI',8,1,'Responsable marketing'],
+  ]},
+  {name:'9. Déploiement & soutenance', color:'#14b8a6', tasks:[
+    ['9.1 Démo locale & sauvegarde SQL',9,1,'Équipe'],
+    ['9.2 Dossier final, répétition & jury',9,2,'Équipe'],
+  ]},
+];
+
+const MILESTONES = [
+  [2,'Validation 1<br>29/11'],
+  [5,'Validation 2<br>20/12'],
+  [8,'Préjury<br>10/01'],
+  [10,'Validation 3<br>24/01'],
+  [11,'Jury final<br>25/01'],
+];
+
+const headTrack = document.getElementById('headTrack');
+headTrack.innerHTML = WEEKS.map((w,i)=>
+  `<div class="week${i===10?' jury':''}">${w[0]}<small>${w[1]}</small></div>`).join('');
+
+const groupsEl = document.getElementById('groups');
+groupsEl.innerHTML = GROUPS.map(g=>{
+  const rows = g.tasks.map(t=>{
+    const [label,s,n,owner] = t;
+    const cells = WEEKS.map((_,i)=>`<div class="cell${i===10?' jury':''}"></div>`).join('');
+    return `<div class="row">
+      <div class="row-label"><b>${label}</b> <span style="color:#94a3b8">— ${owner}</span></div>
+      <div class="track">${cells}<div class="bar" style="--s:${s};--n:${n};--c:${g.color}" title="${label}">${n>1?n+' sem.':''}</div></div>
+    </div>`;
+  }).join('');
+  return `<div class="group-title" style="background:${g.color}">${g.name}<span>${g.tasks.length} lots</span></div>${rows}`;
+}).join('');
+
+const msTrack = document.getElementById('milestoneTrack');
+msTrack.innerHTML = WEEKS.map((_,i)=>`<div class="cell${i===10?' jury':''}"></div>`).join('') +
+  MILESTONES.map(m=>{
+    const left = m[0]===11 ? 'calc(100% - 2px)' : `calc(${m[0]} * 100% / 11)`;
+    return `<div class="diamond" style="left:${left}"></div>
+            <div class="milestone-label" style="left:${left}">${m[1]}</div>`;
+  }).join('');
+
+const legend = document.getElementById('legend');
+legend.innerHTML = GROUPS.map(g=>`<span><i style="background:${g.color}"></i>${g.name.replace(/^\d+\.\s*/,'')}</span>`).join('') +
+  `<span><i style="background:#dc2626;transform:rotate(45deg)"></i>Jalon</span>`;
+</script>
+</body>
+</html>
