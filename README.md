@@ -30,7 +30,7 @@ TuniShop/
 └── README.md
 ```
 
-> ⚠️ Les dossiers techniques seront créés au fur et à mesure des sprints. Le contenu actuel couvre la **gestion de projet (S1)** et le **design UX/UI (S2–S3)**.
+> ⚠️ Les dossiers techniques seront créés au fur et à mesure des sprints. Le contenu actuel couvre la **gestion de projet (S1)**, le **design UX/UI (S2–S3)** et la **base de données (S4–S5)**.
 
 ---
 
@@ -63,7 +63,7 @@ TuniShop/
 | [Suivi des sprints](docs/01_gestion_projet/suivi_sprints.md) | Objectifs, vélocité, burndown, rituels, registre des risques |
 | [Workflow Git](docs/01_gestion_projet/git_workflow.md) | Branches, conventions de commit, tags, procédure PR |
 
-### Livrables UX/UI (en cours — jalon 29/11)
+### Livrables UX/UI (disponibles — jalon 29/11)
 
 | Document | Contenu |
 |---|---|
@@ -73,6 +73,22 @@ TuniShop/
 | [Prototype cliquable](docs/02_ux_ui/prototype_tunishop.html) | **12 écrans interactifs**, bascule Wireframe ↔ Hi-Fi, vues Desktop/Tablette/Mobile 🎨 |
 | [UI kit](docs/02_ux_ui/ui_kit.md) | Palette « Bleu de Sidi Bou », typographie, composants, accessibilité WCAG AA |
 | [Plan Figma](docs/02_ux_ui/prototype_figma.md) | Structure du fichier .fig, interactions, variantes, checklist de livraison |
+
+### Livrables Base de données (disponibles — jalon 20/12)
+
+| Document | Contenu |
+|---|---|
+| [Synthèse BDD](docs/04_bdd/README.md) | Périmètre, couverture RG-01 → RG-11, correspondance écrans, convention de nommage |
+| [Dictionnaire des données](docs/04_bdd/dictionnaire_donnees.md) | 20 tables, champs, types, contraintes, index, domaines et formats |
+| [MCD / MLD](docs/04_bdd/mcd_mld.md) | Modèle conceptuel Merise, cardinalités, passage relationnel, normalisation 3NF |
+| [Schéma SQL](database/schema.sql) | DDL exécutable : 20 tables InnoDB, contraintes, index FULLTEXT, 6 vues |
+| [Procédures](database/procedures.sql) | 7 fonctions + 13 procédures : checkout transactionnel, paiement sandbox, stats |
+| [Triggers](database/triggers.sql) | 11 triggers : stock, TVA, facturation, statuts, avis, audit |
+| [Jeu d'essai](database/seed.sql) | 24 produits, 8 boutiques, 10 commandes, 19 comptes (mot de passe `Test1234!`) |
+| [Tests SQL](database/tests.sql) | **25 scénarios PASS / 0 FAIL** — règles métier et garde-fous vérifiés |
+| [Guide d'import](database/README.md) | Ordre d'import, comptes de démo, sauvegarde/restauration, dépannage PDO |
+
+> ✅ Base de données importée et validée localement sur MariaDB 10.11 (XAMPP) — cible documentée MySQL 8.0 / InnoDB.
 
 ---
 
