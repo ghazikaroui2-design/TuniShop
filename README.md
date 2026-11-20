@@ -17,7 +17,7 @@ TuniShop/
 │   ├── 03_frontend/         ← pages HTML5/CSS3/JS responsives
 │   ├── 04_bdd/              ← dictionnaire, MCD/MLD, scripts SQL
 │   ├── 05_backend/          ← UML, architecture MVC, POO/SOLID (livré ✅)
-│   ├── 06_ecommerce/        ← panier, checkout, paiement sandbox, factures PDF
+│   ├── 06_ecommerce/        ← panier, checkout, paiement sandbox, factures PDF (livré ✅)
 │   ├── 07_securite/         ← authentification, RBAC, audit OWASP
 │   ├── 08_seo_marketing/    ← SEO, sitemap, plan de lancement digital
 │   └── 09_soutenance/       ← support de présentation, démo, manuel utilisateur
@@ -30,7 +30,7 @@ TuniShop/
 └── README.md
 ```
 
-> ⚠️ Les dossiers techniques seront créés au fur et à mesure des sprints. Le contenu actuel couvre la **gestion de projet (S1)**, le **design UX/UI (S2–S3)**, la **base de données (S4–S5)** et le **socle POO/MVC/UML (S5)**.
+> ⚠️ Les dossiers techniques seront créés au fur et à mesure des sprints. Le contenu actuel couvre la **gestion de projet (S1)**, le **design UX/UI (S2–S3)**, la **base de données (S4–S5)**, le **socle POO/MVC/UML (S5)** et le **module E-commerce transactionnel (S7–S8)**.
 
 ---
 
@@ -43,7 +43,7 @@ TuniShop/
 | Front-end | HTML5 sémantique, CSS3 (Grid/Flexbox, media queries), JavaScript ES6+ (`fetch`) |
 | Serveur local | XAMPP (Apache + MySQL) |
 | Sécurité | `password_hash()` Argon2id/bcrypt, sessions PHP, jetons CSRF, RBAC |
-| PDF | DomPDF ou TCPDF (via Composer) |
+| PDF | **DomPDF 3.1.6** via Composer (`composer.lock` versionné) |
 | Versioning | Git — branches `feature/*`, `fix/*`, `docs/*` |
 
 **Environnement cible :** `http://localhost/tunishop/public/`
@@ -95,13 +95,26 @@ TuniShop/
 | Document | Contenu |
 |---|---|
 | [Synthèse backend](docs/05_backend/README.md) | Périmètre, fichiers livrés, validation, couverture RG-01 → RG-11, choix techniques |
-| [Architecture MVC](docs/05_backend/architecture_mvc.md) | Routeur frontal, composants Core, 22 routes, middlewares, modèles, services, sécurité |
+| [Architecture MVC](docs/05_backend/architecture_mvc.md) | Routeur frontal, composants Core, 23 routes, middlewares, modèles, services, sécurité |
 | [Diagrammes UML](docs/05_backend/diagrammes_uml.md) | Cas d'utilisation, classes, 4 séquences, composants, états commande/boutique (Mermaid) |
 | [Concepts POO / SOLID](docs/05_backend/poo_concepts.md) | 4 piliers, SOLID, 10 patterns, PHP 8.3, démonstration soutenance |
 | [Socle applicatif](public/index.php) | Point d'entrée HTTP — `php -S localhost:8000 -t public` |
 | [Tests de recette](tests/run.php) | **23 tests PASS / 0 FAIL** — `composer test` |
 
 > ✅ Socle MVC exécutable : autoload PSR-4, PHP linté, 23 tests verts. Couche Services branchée sur les procédures stockées de la BDD (panier, commande, paiement sandbox, audit).
+
+### Livrables E-commerce (disponibles — jalon 10/01)
+
+| Document | Contenu |
+|---|---|
+| [Synthèse E-commerce](docs/06_ecommerce/README.md) | Chaîne transactionnelle complète, couverture RG-01 → RG-11, validation et démarrage local |
+| [Parcours client](docs/06_ecommerce/parcours_client.md) | Panier persistant, quantités, checkout 3 étapes, adresses, codes promo |
+| [Paiement sandbox](docs/06_ecommerce/paiement_sandbox.md) | Carte `4242 4242 4242 4242`, RG-07, absence totale de données bancaires |
+| [Facturation PDF](docs/06_ecommerce/facturation_pdf.md) | Numérotation `F-YYYY-NNNN`, DomPDF 3.1.6, gabarit A4, téléchargement sécurisé |
+| [Recette E-commerce](docs/06_ecommerce/tests_ecommerce.md) | 15 scénarios E01–E15 et résultats |
+| [Tests](tests/ecommerce.php) | **15 tests PASS / 0 FAIL** — `composer test:ecommerce` |
+
+> ✅ Module transactionnel livré : panier persistant, checkout en 3 étapes, code promo, paiement simulé sans donnée bancaire, facture PDF téléchargeable par le client propriétaire ou l'administrateur. **63 tests au vert** au total (23 MVC + 15 E-commerce + 25 SQL).
 
 ---
 

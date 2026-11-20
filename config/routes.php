@@ -39,6 +39,7 @@ return [
     ['GET',  '/commande',                OrderController::class . '@checkout',     ['auth'],                   'order.checkout'],
     ['POST', '/commande',                OrderController::class . '@place',        ['auth', 'csrf'],           'order.place'],
     ['GET',  '/commande/{id}',           OrderController::class . '@confirmation', ['auth'],                   'order.confirmation'],
+    ['GET',  '/commande/{id}/facture.pdf', OrderController::class . '@invoice',      ['auth'],                   'order.invoice'],
 
     // ---- Espace vendeur (RBAC) ----
     ['GET',  '/vendeur',                 SellerController::class . '@dashboard',   ['auth', 'role:vendeur'],   'seller.dashboard'],

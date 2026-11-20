@@ -48,7 +48,7 @@ flowchart LR
    - pose `@current_user_id`, `@client_ip`, `@client_ua` via `Database::setAuditContext()` (**RG-11**) ;
    - configure `AuditService` avec le même contexte ;
    - délègue au `Router`.
-4. `Router::dispatch()` parcourt les 22 routes ; `GET /produit/{slug}` correspond.
+4. `Router::dispatch()` parcourt les 23 routes ; `GET /produit/{slug}` correspond.
    - `setRouteParams(['slug' => 'vase-bleu-et-blanc'])` ;
    - aucun middleware pour cette route ;
    - `callHandler()` instancie `CatalogController` avec ses dépendances.
@@ -119,14 +119,14 @@ Fournit `render()`, `json()`, `redirect()` et conserve les trois dépendances pa
 
 ## 4. Table de routage (`config/routes.php`)
 
-22 routes au format `[MÉTHODE, CHEMIN, Contrôleur@action, MIDDLEWARES, NOM]`.
+23 routes au format `[MÉTHODE, CHEMIN, Contrôleur@action, MIDDLEWARES, NOM]`.
 
 | Groupe | Routes | Middlewares |
 |---|---|---|
 | Public | `/`, `/catalogue`, `/produit/{slug}`, `/api/produits` | — |
 | Panier | `/panier`, `/panier/ajouter`, `/panier/supprimer` | `csrf` sur POST |
 | Auth | `/connexion`, `/inscription`, `/deconnexion` | `csrf` sur POST, `auth` sur logout |
-| Commande | `/commande`, `/commande/{id}` | `auth`, `csrf` sur POST |
+| Commande | `/commande`, `/commande/{id}`, `/commande/{id}/facture.pdf` | `auth`, `csrf` sur POST |
 | Vendeur | `/vendeur`, `/vendeur/produits`, `/vendeur/commandes` | `auth`, `role:vendeur` |
 | Admin | `/admin`, `/admin/vendeurs`, `/admin/vendeurs/{id}/valider` | `auth`, `role:admin`, `csrf` |
 | Supervision | `/sante` | — |
@@ -152,6 +152,7 @@ Fournit `render()`, `json()`, `redirect()` et conserve les trois dépendances pa
 | `Model` (abstract) | — | CRUD générique sécurisé (`find`, `all`, `where`, `create`, `update`, `delete`, `count`) |
 | `Product` | `products`, `v_catalogue`, `v_low_stock`, `product_images` | Catalogue filtré, fiche produit, alertes stock |
 | `Category` | `categories` | Catégories actives |
+| `Address` | `addresses` | Adresses de livraison, vérification de propriété |
 | `Shop` | `shops`, `users` | Boutiques en attente / validées |
 | `Cart` | `carts`, `cart_items`, `v_cart_totals` | Panier actif, lignes, totaux |
 | `Order` | `orders`, `order_items`, `invoices`, `order_status_history` | Commandes client, facture, historique |
@@ -163,9 +164,10 @@ Tout identifiant SQL passe par `Database::identifier()` : aucune concaténation 
 
 | Classe | Règles | Méthodes clés |
 |---|---|---|
-| `CartService` | RG-01, RG-02, RG-03, RG-10 | `currentCartId()`, `add()`, `remove()`, `items()`, `totals()` |
+| `CartService` | RG-01, RG-02, RG-03, RG-10 | `currentCartId()`, `add()`, `updateQuantity()`, `remove()`, `items()`, `totals()` |
 | `OrderService` | RG-04, RG-08, RG-11 | `place()` → `sp_place_order()` + audit |
 | `PaymentService` | RG-07 | `isValidTestCard()`, `simulate()` → `sp_simulate_payment()` |
+| `InvoiceService` | RG-08, FR-26 | `data()`, `renderHtml()`, `renderPdf()`, `save()` (DomPDF) |
 | `ShopService` | RG-06 | `validate()` → `sp_validate_shop()` |
 | `AuditService` | RG-11 | `configure()`, `log()` → `sp_log_action()` |
 
@@ -181,7 +183,7 @@ Tout identifiant SQL passe par `Database::identifier()` : aucune concaténation 
 | `CatalogController` | `index`, `show` | `catalog/index`, `catalog/show` |
 | `CartController` | `index`, `add`, `remove` | `cart/index` |
 | `AuthController` | `loginForm`, `login`, `registerForm`, `register`, `logout` | `auth/login`, `auth/register` |
-| `OrderController` | `checkout`, `place`, `confirmation` | `checkout/index`, `order/confirmation` |
+| `OrderController` | `checkout`, `place`, `confirmation`, `invoice` | `checkout/index`, `order/confirmation`, `invoices/pdf` (PDF brut) |
 | `SellerController` | `dashboard`, `products`, `orders` | `dashboard/index` |
 | `AdminController` | `dashboard`, `shops`, `validateShop` | `dashboard/index` |
 | `ApiController` | `products` | JSON |
@@ -217,14 +219,16 @@ TuniShop/
 ├── public/
 │   ├── index.php
 │   ├── assets/css/app.css
-│   └── uploads/.gitkeep
+│   ├── uploads/.gitkeep
+│   └── factures/.gitkeep
 ├── app/
 │   ├── Core/{Application,Router,Request,Response,Session,View,Database,Controller}.php
 │   ├── Middlewares/{MiddlewareInterface,AuthMiddleware,RoleMiddleware,CsrfMiddleware}.php
 │   ├── Exceptions/{HttpException,NotFoundException,ForbiddenException,ValidationException}.php
-│   ├── Models/{Model,Product,Category,Shop,Cart,Order,User}.php
-│   ├── Services/{CartService,OrderService,PaymentService,ShopService,AuditService}.php
+│   ├── Models/{Model,Product,Category,Address,Shop,Cart,Order,User}.php
+│   ├── Services/{CartService,OrderService,PaymentService,InvoiceService,ShopService,AuditService}.php
 │   ├── Controllers/{Home,Catalog,Cart,Auth,Order,Seller,Admin,Api,System}Controller.php
-│   └── Views/{layouts,home,catalog,cart,auth,checkout,order,dashboard}/*.php
-└── tests/run.php
+│   └── Views/{layouts,home,catalog,cart,auth,checkout,order,invoices,dashboard}/*.php
+├── composer.lock
+└── tests/{run.php,ecommerce.php}
 ```

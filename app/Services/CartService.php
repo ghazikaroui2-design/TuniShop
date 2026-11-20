@@ -74,6 +74,21 @@ final class CartService
         );
     }
 
+    /** FR-08 : modifier une quantité (la procédure écrase la quantité existante). */
+    public function updateQuantity(int $cartId, int $productId, int $quantity): void
+    {
+        if ($quantity < 1) {
+            $this->carts->removeItem($cartId, $productId);
+
+            return;
+        }
+
+        $this->database->execute(
+            'CALL sp_add_to_cart(?, ?, ?)',
+            [$cartId, $productId, $quantity]
+        );
+    }
+
     public function remove(int $cartId, int $productId): void
     {
         $this->carts->removeItem($cartId, $productId);

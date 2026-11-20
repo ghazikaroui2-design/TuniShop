@@ -17,7 +17,8 @@
     <p>Statut actuel : <span class="pill"><?= $this->e($order['status']) ?></span></p>
     <?php if ($invoice !== null) : ?>
       <p>Facture <strong><?= $this->e($invoice['invoice_number']) ?></strong> générée le <?= $this->e($invoice['issued_at']) ?>.</p>
-      <p class="muted small">Le PDF sera disponible dans le module E-commerce (Sprint 8).</p>
+      <a class="btn" href="/commande/<?= (int) $order['id'] ?>/facture.pdf">📄 Télécharger la facture PDF</a>
+      <p class="muted small">Fichier enregistré dans <code>public/factures/</code> (non versionné).</p>
     <?php endif; ?>
     <h3>Historique</h3>
     <ul>

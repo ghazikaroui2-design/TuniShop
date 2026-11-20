@@ -27,7 +27,7 @@
 | `.env.example` | Configuration locale (jamais de secret versionné) |
 | `config/app.php` | Paramètres applicatifs, session, RG-02/RG-03, RG-10 |
 | `config/database.php` | Connexion PDO et options de sécurité |
-| `config/routes.php` | **22 routes** nommées, avec middlewares |
+| `config/routes.php` | **23 routes** nommées, avec middlewares (dont `order.invoice`) |
 | `public/index.php` | Routeur frontal, unique point d'entrée HTTP |
 | `app/Core/` | `Application`, `Router`, `Request`, `Response`, `Session`, `View`, `Database`, `Controller` |
 | `app/Middlewares/` | `AuthMiddleware`, `RoleMiddleware`, `CsrfMiddleware`, `MiddlewareInterface` |
@@ -60,7 +60,7 @@ Get-ChildItem -Path app,config,public,tests -Recurse -Filter *.php | % { & $php 
 
 | Groupe | Tests | Vérifications |
 |---|---|---|
-| Structure & autoload | T01–T03 | PSR-4, 22 routes, normalisation des URL |
+| Structure & autoload | T01–T03 | PSR-4, 23 routes, normalisation des URL |
 | Composants Core | T04–T06 | JSON, échappement HTML, jeton CSRF |
 | Middlewares | T07–T09 | blocage CSRF (419), RBAC (403) |
 | Routage / rendu | T10–T16 | accueil, catalogue, `{slug}`, API, santé, 302, 404 |
@@ -80,7 +80,7 @@ Get-ChildItem -Path app,config,public,tests -Recurse -Filter *.php | % { & $php 
 | **RG-05** | Avis modérés via `sp_moderate_review()` (?? interface admin à brancher au Sprint 7) |
 | **RG-06** | `ShopService::validate()` → `sp_validate_shop()` ; route admin protégée par `role:admin` |
 | **RG-07** | `PaymentService::isValidTestCard()` validation cosmétique uniquement ; `simulate()` n'envoie que l'ID de commande, aucune donnée bancaire |
-| **RG-08** | `OrderController::confirmation()` affiche la facture générée par le trigger `trg_orders_au` |
+| **RG-08** | `trg_orders_au` crée la facture ; `InvoiceService` + `OrderController::invoice()` la rendent en PDF téléchargeable |
 | **RG-09** | `User::verify()` avec `password_verify()` ; création en **Argon2id** |
 | **RG-10** | `CartService::currentCartId()` crée un panier `expires_at = NOW() + 30 DAY` |
 | **RG-11** | `Application::handle()` pose le contexte d'audit et configure `AuditService` avant chaque requête |
@@ -106,5 +106,5 @@ Get-ChildItem -Path app,config,public,tests -Recurse -Filter *.php | % { & $php 
 
 - ✅ Socle MVC complet, linté et testé (**23 PASS**).
 - ✅ 12 écrans du prototype couverts par les vues et les routes (accueil, catalogue, fiche, panier, checkout, confirmation, connexion, inscription, tableau de bord vendeur/admin, validation vendeur, API, santé).
-- ⏳ Génération des factures PDF prévue dans le module **E-commerce** (Sprint 8).
+- ✅ Génération des factures PDF livrée dans le module [E-commerce](../06_ecommerce/README.md) (DomPDF 3.1.6, route `order.invoice`).
 - ⏳ Formulaire de modération des avis prévu dans l'administration (Sprint 7).

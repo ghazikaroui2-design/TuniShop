@@ -12,11 +12,20 @@
             <h3><?= $this->e($item['product_name']) ?></h3>
             <p class="muted small"><?= number_format((float) $item['unit_price_ttc'], 2, ',', ' ') ?> DT × <?= (int) $item['quantity'] ?></p>
           </div>
-          <form method="post" action="/panier/supprimer">
-            <input type="hidden" name="_token" value="<?= $this->e($csrf) ?>">
-            <input type="hidden" name="product_id" value="<?= (int) $item['product_id'] ?>">
-            <button class="link" type="submit">Supprimer</button>
-          </form>
+          <div class="cart-actions">
+            <form method="post" action="/panier/ajouter" class="inline">
+              <input type="hidden" name="_token" value="<?= $this->e($csrf) ?>">
+              <input type="hidden" name="product_id" value="<?= (int) $item['product_id'] ?>">
+              <input type="number" name="quantity" value="<?= (int) $item['quantity'] ?>" min="1"
+                     aria-label="Quantité de <?= $this->e($item['product_name']) ?>">
+              <button class="btn small secondary" type="submit">Modifier</button>
+            </form>
+            <form method="post" action="/panier/supprimer">
+              <input type="hidden" name="_token" value="<?= $this->e($csrf) ?>">
+              <input type="hidden" name="product_id" value="<?= (int) $item['product_id'] ?>">
+              <button class="link" type="submit">Supprimer</button>
+            </form>
+          </div>
         </div>
       <?php endforeach; ?>
     </div>

@@ -86,7 +86,7 @@ $t->check('T01 — Autoload PSR-4 des classes App\\', static fn () =>
     && class_exists(\App\Services\OrderService::class)
 );
 
-$t->check('T02 — 22 routes déclarées', static fn () => count($routes) === 22);
+$t->check('T02 — 23 routes déclarées', static fn () => count($routes) === 23);
 
 $t->check('T03 — Normalisation des chemins', static fn () =>
     Request::normalizePath('/catalogue/') === '/catalogue'
