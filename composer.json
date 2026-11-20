@@ -1,0 +1,29 @@
+{
+    "name": "tunishop/marketplace",
+    "description": "Marketplace locale de l'artisanat tunisien — Sidi Bou Said (BTS DI 2-1)",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.3",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-mbstring": "*",
+        "ext-openssl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "php tests/run.php"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

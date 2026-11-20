@@ -16,13 +16,13 @@ TuniShop/
 │   ├── 02_ux_ui/            ← personas, user flows, wireframes, prototype Figma
 │   ├── 03_frontend/         ← pages HTML5/CSS3/JS responsives
 │   ├── 04_bdd/              ← dictionnaire, MCD/MLD, scripts SQL
-│   ├── 05_backend/          ← UML, architecture MVC, CRUD (POO avancée)
+│   ├── 05_backend/          ← UML, architecture MVC, POO/SOLID (livré ✅)
 │   ├── 06_ecommerce/        ← panier, checkout, paiement sandbox, factures PDF
 │   ├── 07_securite/         ← authentification, RBAC, audit OWASP
 │   ├── 08_seo_marketing/    ← SEO, sitemap, plan de lancement digital
 │   └── 09_soutenance/       ← support de présentation, démo, manuel utilisateur
 ├── public/                  ← point d'entrée web, assets, uploads, sitemap.xml, robots.txt
-├── app/                     ←Controllers / Models / Services / Middlewares / Views / Core
+├── app/                     ← Controllers / Models / Services / Middlewares / Views / Core
 ├── config/                  ← configuration (BDD, constantes, routing)
 ├── database/                ← schema.sql, seed.sql, triggers.sql, procedures.sql
 ├── tests/                   ← tests fonctionnels et de sécurité
@@ -30,7 +30,7 @@ TuniShop/
 └── README.md
 ```
 
-> ⚠️ Les dossiers techniques seront créés au fur et à mesure des sprints. Le contenu actuel couvre la **gestion de projet (S1)**, le **design UX/UI (S2–S3)** et la **base de données (S4–S5)**.
+> ⚠️ Les dossiers techniques seront créés au fur et à mesure des sprints. Le contenu actuel couvre la **gestion de projet (S1)**, le **design UX/UI (S2–S3)**, la **base de données (S4–S5)** et le **socle POO/MVC/UML (S5)**.
 
 ---
 
@@ -89,6 +89,19 @@ TuniShop/
 | [Guide d'import](database/README.md) | Ordre d'import, comptes de démo, sauvegarde/restauration, dépannage PDO |
 
 > ✅ Base de données importée et validée localement sur MariaDB 10.11 (XAMPP) — cible documentée MySQL 8.0 / InnoDB.
+
+### Livrables POO / MVC / UML (disponibles — socle S5)
+
+| Document | Contenu |
+|---|---|
+| [Synthèse backend](docs/05_backend/README.md) | Périmètre, fichiers livrés, validation, couverture RG-01 → RG-11, choix techniques |
+| [Architecture MVC](docs/05_backend/architecture_mvc.md) | Routeur frontal, composants Core, 22 routes, middlewares, modèles, services, sécurité |
+| [Diagrammes UML](docs/05_backend/diagrammes_uml.md) | Cas d'utilisation, classes, 4 séquences, composants, états commande/boutique (Mermaid) |
+| [Concepts POO / SOLID](docs/05_backend/poo_concepts.md) | 4 piliers, SOLID, 10 patterns, PHP 8.3, démonstration soutenance |
+| [Socle applicatif](public/index.php) | Point d'entrée HTTP — `php -S localhost:8000 -t public` |
+| [Tests de recette](tests/run.php) | **23 tests PASS / 0 FAIL** — `composer test` |
+
+> ✅ Socle MVC exécutable : autoload PSR-4, PHP linté, 23 tests verts. Couche Services branchée sur les procédures stockées de la BDD (panier, commande, paiement sandbox, audit).
 
 ---
 
