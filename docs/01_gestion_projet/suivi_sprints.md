@@ -103,7 +103,7 @@
 - [x] Dossier de recette (US-010)
 - [x] Installation Git + initialisation du dépôt (US-004 — commit `5a6caeb`)
 - [ ] Noms des 4 membres dans le planning (US-005)
-- [ ] Installation de Composer (avant S3 — hors jalon 1)
+- [x] Installation de Composer 2.11.2 + extensions PHP `zip`/`gd` (US-004)
 
 ### ⚪ Validation 2 — 20/12/2026
 
@@ -132,7 +132,7 @@
 |---|---|---|---|---|---|---|
 | R-01 | Retard sur la validation 2 (S5) | Moyenne | Fort | Chef de projet | Suivi hebdomadaire, périmètre gelé à S2 | 🟢 Ouvert |
 | R-02 | Périmètre trop large | Forte | Fort | PO | MoSCoW, réserve V1.1 | 🟢 Ouvert |
-| R-03 | Composer absent (Git OK depuis S1) | Moyenne | Moyen | Back-end | Installer avec `C:\xampp\php\php.exe`, autoload de secours documenté | 🟠 En cours |
+| R-03 | Composer absent (Git OK depuis S1) | Moyenne | Moyen | Back-end | Résolu : Composer 2.11.2 installé + extensions `zip`/`gd` activées | 🟢 Fermé |
 | R-04 | Conflits de merge | Moyenne | Moyen | Back-end | Branches feature + PR | 🟢 Ouvert |
 | R-05 | Trigger de stock défaillant | Moyenne | Fort | BDD | Tests SQL + transaction | 🟢 Ouvert |
 | R-06 | Jeu de données irréaliste | Moyenne | Faible | BDD | Produits/artisans inspirés de Sidi Bou Saïd | 🟢 Ouvert |

@@ -48,7 +48,7 @@ TuniShop/
 
 **Environnement cible :** `http://localhost/tunishop/public/`
 
-> ✅ **Git 2.56.1** est installé et le dépôt est initialisé (`main` + `develop`, commit initial `5a6caeb`). ⚠️ **Composer** reste à installer avant S3 (le setup est dans `Downloads`) : voir `docs/01_gestion_projet/git_workflow.md`.
+> ✅ Environnement vérifié le 20/11/2026 : **Git 2.56.1**, **PHP 8.3.36 (XAMPP)** et **Composer 2.11.2** installés. Dépôt initialisé (`main` + `develop`). Détails et commandes de vérification : `docs/01_gestion_projet/git_workflow.md`.
 
 ---
 

@@ -3,7 +3,7 @@
 | Champ | Valeur |
 |---|---|
 | Version | 1.0 — 20/11/2026 |
-| Statut local | ✅ **Git 2.56.1 installé** — dépôt initialisé (`main` + `develop`, commit `5a6caeb`) · ⚠️ **Composer non installé** (setup présent dans `Downloads`) |
+| Statut local | ✅ **Git 2.56.1**, **PHP 8.3.36**, **Composer 2.11.2** installés et vérifiés · dépôt initialisé (`main` + `develop`, commits `5a6caeb`, `dd3c4e8`) |
 | Objectif | Coordonner 4 développeurs sur 10 semaines sans conflit et livrer un dépôt propre le 24/01/2027 |
 
 ---
@@ -14,21 +14,26 @@
 |---|---|---|
 | **Git** | ✅ Installé | `C:\Program Files\Git\cmd\git.exe` — v2.56.1.windows.1 |
 | **PHP (XAMPP)** | ✅ Installé | `C:\xampp\php\php.exe` — v8.3.36 |
-| **Composer** | ❌ Non installé | Setup téléchargé : `C:\Users\USER\Downloads\Composer-Setup.exe` |
+| **Composer** | ✅ Installé | `C:\Users\USER\AppData\Local\Composer\composer.phar` + `composer.bat` — v2.11.2 |
 
-> ⚠️ `C:\Program Files\Git\cmd` et `C:\xampp\php` ne figurent pas dans le `PATH` de la session d'automatisation. Utiliser les **chemins absolus** ci-dessus, ou ajouter ces dossiers au PATH utilisateur Windows.
+### Installation de Composer (réalisée le 20/11/2026)
 
-### Finir l'installation de Composer (avant le Sprint 2)
+- `composer.phar` téléchargé depuis <https://getcomposer.org/download/latest-stable/composer.phar> ;
+- lanceur `composer.bat` créé dans `C:\Users\USER\AppData\Local\Composer\` et pointant vers `C:\xampp\php\php.exe` ;
+- dossiers ajoutés au **PATH utilisateur** : `C:\Program Files\Git\cmd`, `C:\xampp\php`, `C:\Users\USER\AppData\Local\Composer` ;
+- extensions PHP activées dans `C:\xampp\php\php.ini` (sauvegarde `php.ini.bak`) : `zip`, `gd` — en plus de `pdo_mysql`, `mbstring`, `openssl`, `dom`, `curl`, `fileinfo` ;
+- `composer diagnose` : `OK` (version, clés, connectivité Packagist/GitHub, disque).
 
-1. Lancer `C:\Users\USER\Downloads\Composer-Setup.exe`.
-2. Lorsque l'assistant demande l'exécutable PHP, indiquer : `C:\xampp\php\php.exe`.
-3. Cocher l'option « Add Composer to my PATH ».
-4. Vérifier dans un **nouveau** terminal (après redémarrage) :
-   ```bash
-   git --version
-   php --version
-   composer --version
-   ```
+> ⚠️ **Ouvrir un nouveau terminal** après l'installation pour que le PATH soit rechargé. Dans ce cas, utiliser les chemins absolus ci-dessus.
+
+### Vérification (dans un nouveau terminal)
+
+```bash
+git --version        # git version 2.56.1.windows.1
+php --version        # PHP 8.3.36 (cli)
+composer --version   # Composer version 2.11.2
+composer diagnose    # doit afficher "OK" pour l'essentiel
+```
 
 ### Identité Git (déjà configurée)
 
