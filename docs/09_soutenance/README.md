@@ -28,7 +28,7 @@
 | Écrans du prototype intégrés | 12 (Desktop / Tablette / Mobile) |
 | Routes MVC | 26, dont 3 ajoutées lors du frontend |
 | Base de données | 20 tables InnoDB · 6 vues · 7 fonctions · 13 procédures · 11 triggers |
-| Tests automatisés | **94 PASS / 0 FAIL** (24 MVC + 15 e-commerce + 18 sécurité + 12 frontend + 25 SQL) |
+| Tests automatisés | **131 PASS / 0 FAIL** (24 MVC + 15 e-commerce + 18 sécurité + 12 frontend + 12 SEO + 25 SQL) |
 | Matières couvertes | 8 (gestion, UX/UI, responsive, BDD, POO/UML, e-commerce, sécurité, SEO) |
 
 ## 3. Règles d'or de la présentation

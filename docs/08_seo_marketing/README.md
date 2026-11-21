@@ -28,10 +28,10 @@
 | Hiérarchie Hn | ✅ | un seul `h1` par écran, `h2`/`h3` dans les sections |
 | Attributs `alt` | ✅ | `alt_text` de `product_images`, sinon `role="img"` + `aria-label` |
 | `lang="fr"` | ✅ | `<html lang="fr">` dans le layout |
-| Balise `canonical` | ⏳ | À ajouter dans le layout (P0) |
-| JSON-LD Schema.org | ⏳ | `Organization`, `WebSite`, `Product`, `BreadcrumbList` (P0) |
-| `robots.txt` | ⏳ | À déposer dans `public/` (P0) |
-| `sitemap.xml` | ⏳ | À générer depuis `v_catalogue` (P0) |
+| Balise `canonical` | ✅ | `Seo::canonical()` dans le layout, URL absolue sans filtre |
+| JSON-LD Schema.org | ✅ | `Organization`, `WebSite`, `Product`, `BreadcrumbList` avec nonce CSP |
+| `robots.txt` | ✅ | `public/robots.txt` + `X-Robots-Tag` sur 9 préfixes privés |
+| `sitemap.xml` | ✅ | `public/sitemap.xml` (23 URL), régénéré par `tools/generate_sitemap.php` |
 | Open Graph / Twitter | ⏳ | Balises de partage social (P1) |
 | Suivi d'audience | ⏳ | KPI définis, outil à choisir au déploiement (P1) |
 
@@ -40,7 +40,7 @@ Détail et plan d'action : [plan_seo.md](plan_seo.md).
 ## 3. Situation au 21/11/2026
 
 - ✅ Socle SEO « technique de base » livré avec l'intégration frontend (commit `7d74622`).
-- 🟡 US-047 partiellement couverte : il reste canonical, JSON-LD, sitemap et robots à finaliser.
-- ⏳ Analyse de positionnement et KPI de lancement à mettre en place au déploiement.
+- ✅ **US-047 terminée (lot P0)** : canonical, JSON-LD, sitemap et robots livrés et couverts par 12 tests (`composer test:seo`). Voir anomalie A-05 clôturée.
+- ⏳ Open Graph et KPI de lancement (P1) à mettre en place au déploiement.
 
-> ⚠️ SEO et CSP : toute balise JSON-LD doit être insérée côté **serveur** dans le layout PHP. L'ajouter en JavaScript violerait `script-src 'self'` (aucun `<script>` inline autorisé). Voir [comportements JS](../03_frontend/comportements_js.md).
+> ✅ SEO et CSP : le JSON-LD est généré **côté serveur** dans un data block `<script type="application/ld+json">` portant un **nonce par requête** (`script-src 'self' 'nonce-…'`). Aucun `'unsafe-inline'`, aucun JavaScript d'injection. Voir DEC-011 dans [plan_seo.md](plan_seo.md) §3.1.

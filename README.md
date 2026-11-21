@@ -142,16 +142,19 @@ TuniShop/
 | [Recette frontend](docs/03_frontend/recette_frontend.md) | 12 scénarios F01–F12 et résultats |
 | [Tests](tests/frontend.php) | **12 tests PASS / 0 FAIL** — `composer test:frontend` |
 
-> ✅ Intégration frontend livrée : design system « Bleu de Sidi Bou », 12 écrans câblés sur le MVC, JS externe conforme CSP, responsive 320/640/1024 px+ et accessibilité WCAG 2.1 AA. **94 tests au vert** au total (24 MVC + 15 E-commerce + 18 Sécurité + 12 Frontend + 25 SQL).
+> ✅ Intégration frontend livrée : design system « Bleu de Sidi Bou », 12 écrans câblés sur le MVC, JS externe conforme CSP, responsive 320/640/1024 px+ et accessibilité WCAG 2.1 AA. **106 tests PHP + 25 tests SQL au vert** (24 MVC + 15 E-commerce + 18 Sécurité + 12 Frontend + 12 SEO + 25 SQL).
 
 ### Livrables Marketing du Web / SEO (disponibles — 8ᵉ matière)
 
 | Document | Contenu |
 |---|---|
-| [Synthèse SEO](docs/08_seo_marketing/README.md) | État des lieux (6 critères/12 conformes), 8ᵉ matière, liens avec NFR-05 |
-| [Plan SEO](docs/08_seo_marketing/plan_seo.md) | Stratégie locale Sidi Bou Saïd, plan P0/P1/P2, KPI, recette, contrainte CSP |
+| [Synthèse SEO](docs/08_seo_marketing/README.md) | État des lieux (10 critères/12 conformes), 8ᵉ matière, liens avec NFR-05 |
+| [Plan SEO](docs/08_seo_marketing/plan_seo.md) | Stratégie locale Sidi Bou Saïd, plan P0 livré / P1-P2, KPI, recette, nonce CSP (DEC-011) |
+| [Tests SEO](tests/seo.php) | **12 tests PASS / 0 FAIL** — `composer test:seo` |
+| [robots.txt](public/robots.txt) · [sitemap.xml](public/sitemap.xml) | Fichiers publics servis à la racine |
+| [Générateur de sitemap](tools/generate_sitemap.php) | `php tools/generate_sitemap.php` — régénère 23 URL depuis `v_catalogue` |
 
-> 🟡 Socle indexable en place (URLs propres, title/description uniques, Hn, alt, lang). Restent à finaliser : canonical, JSON-LD, `sitemap.xml`, `robots.txt` — voir anomalie A-05.
+> ✅ **US-047 terminée** (A-05 clôturée) : canonical absolu, JSON-LD `Organization`/`WebSite`/`Product`/`BreadcrumbList` avec nonce CSP, `robots.txt`, `sitemap.xml` et `X-Robots-Tag` sur les routes privées. Restent en P1 : Open Graph et suivi KPI.
 
 ### Livrables Soutenance (disponibles — dossier 9)
 
@@ -161,7 +164,7 @@ TuniShop/
 | [Support de soutenance](docs/09_soutenance/support_soutenance.md) | 13 slides, messages clés, démo scriptée client/vendeur/admin, plan B matériel |
 | [Questions de jury](docs/09_soutenance/questions_jury.md) | 25 questions classées par thème, avec réponses et preuves documentées |
 
-> ✅ Dossier de jury prêt : démonstration en 10 minutes, 94 tests affichables en sauvegarde et réponses argumentées aux questions techniques.
+> ✅ Dossier de jury prêt : démonstration en 10 minutes, 131 tests affichables en sauvegarde et réponses argumentées aux questions techniques.
 
 ---
 

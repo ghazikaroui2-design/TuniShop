@@ -13,7 +13,7 @@
 **R.** Planning poker sur 58 US, réparties en 10 sprints de 2 semaines, avec vélocité visée de 36,6 points/sprint. La charge est volontairement concentrée sur S2–S4 (121 points). Un écart supérieur à une semaine déclenche le basculement des US Should/Could en réserve V1.1. Preuve : backlog §4 et burndown du suivi des sprints.
 
 ### Q3. Quelles sont vos anomalies ouvertes aujourd'hui ?
-**R.** Quatre : A-01 (noms de l'équipe), A-02 (remote GitHub), A-05 (SEO technique à finaliser) et trois reportées V1.1 mineures (A-03 images, A-04 logo, A-06/A-07 sécurité). **Aucune bloquante.** Les trois anciennes anomalies bloquantes ont été corrigées et vérifiées. Preuve : [liste_anomalies.md](../01_gestion_projet/liste_anomalies.md).
+**R.** Deux majeures : A-01 (noms de l'équipe) et A-02 (remote GitHub). Les autres sont mineures et reportées V1.1 (A-03 images, A-04 logo, A-06/A-07 sécurité). **Aucune bloquante.** A-05 (SEO technique) est clôturée depuis le 21/11. Preuve : [liste_anomalies.md](../01_gestion_projet/liste_anomalies.md).
 
 ---
 
@@ -51,7 +51,7 @@
 **R.** `OrderController::loadOrderForCurrentUser()` vérifie la propriété de la commande avant tout rendu ou téléchargement. Un client qui demande la facture d'un autre reçoit une **404 neutre** — pas une 403 qui confirmerait l'existence de la ressource. Test E15.
 
 ### Q13. Votre CSP autorise-t-elle le JavaScript inline ?
-**R.** Non. `script-src 'self'` uniquement, avec `default-src 'self'`, `object-src 'none'`, `frame-ancestors 'none'`, `form-action 'self'`. Tout le JS est dans `public/assets/js/app.js`, chargé en `defer`. Le layout est le seul à contenir une balise `<script src…>`. Tests F03/F04 et S03. Conséquence assumée : le JSON-LD SEO sera servi par un fichier externe, pas injecté en JS. Voir [plan_seo.md](../08_seo_marketing/plan_seo.md) §3.1.
+**R.** Non. `script-src 'self'` (plus un nonce par requête), avec `default-src 'self'`, `object-src 'none'`, `frame-ancestors 'none'`, `form-action 'self'`. Tout le JS exécutable est dans `public/assets/js/app.js`, chargé en `defer`. Les seules autres balises `<script>` sont des **data blocks** `type="application/ld+json"` générés par PHP et portant le nonce : ils ne s'exécutent pas et sont autorisés nommément, sans `'unsafe-inline'`. Tests F03/F04, S03 et SEO-05/SEO-06/SEO-12. Voir DEC-011 dans [plan_seo.md](../08_seo_marketing/plan_seo.md) §3.1.
 
 ### Q14. RG-07 : comment prouvez-vous qu'aucune donnée bancaire n'est stockée ?
 **R.** Trois niveaux : (1) les champs carte du checkout n'ont **pas d'attribut `name`** → le navigateur ne les soumet pas ; (2) la table `payments` ne contient aucune colonne bancaire ; (3) le service ne reçoit que `confirm_sandbox=1`. Test E04 vérifie l'absence de `name="card_number"` / `name="cvc"`, E10 vérifie le schéma, T23 vérifie l'audit. Les tests utilisent `4242 4242 4242 4242`.
@@ -93,10 +93,10 @@
 **R.** Choix volontaire : `.gitignore` exclut `public/uploads/*` pour ne pas alourdir le dépôt et éviter de versionner des fichiers binaires. Le contrôleur détecte l'absence du fichier et affiche une illustration textuelle accessible. C'est l'anomalie A-03, reportée en V1.1 avec l'upload sécurisé.
 
 ### Q23. Quelle est votre plus grosse dette technique ?
-**R.** L'absence de remote GitHub (A-02) et la SEO technique incomplète (A-05). Les deux sont documentées, priorisées et ont un plan d'action daté. Côté code, la limite principale est l'absence de tests navigateur (Selenium/Playwright) : notre recette frontend est structurelle (F01–F12), pas visuelle.
+**R.** L'absence de remote GitHub (A-02) et les noms de l'équipe (A-01) : deux points organisationnels, pas techniques. Côté code, la limite principale est l'absence de tests navigateur (Selenium/Playwright) : nos recettes sont structurelles (F01–F12) et SEO (SEO-01–SEO-12), pas visuelles.
 
 ### Q24. Si vous recommenciez, que changeriez-vous ?
-**R.** J'écrirais les tests SEO et de rendu HTML **en même temps** que le layout, pour figer les balises dès le premier jour ; et je demanderais l'URL du dépôt Git dès le Sprint 1 plutôt qu'à la fin. Ce sont exactement les deux points qui ont généré des anomalies documentées (A-02, A-05).
+**R.** J'écrirais les tests SEO et de rendu HTML **en même temps** que le layout — c'est ce que nous avons fait avec `tests/seo.php`, ce qui a permis de clôturer A-05 en une demi-journée ; et je demanderais l'URL du dépôt Git dès le Sprint 1 plutôt qu'à la fin (A-02 reste ouvert).
 
 ### Q25. Combien de temps avez-vous passé sur la sécurité ?
 **R.** Le durcissement a été intégré dès le socle (S5) puis consolidé en S9 : Argon2id, throttle, CSRF rotatif, RBAC, en-têtes globaux, audit. 18 tests dédiés et un dossier de 6 documents. Le résultat est mesurable : `composer audit` propre et zéro donnée bancaire stockée. Voir [README sécurité](../07_securite/README.md).

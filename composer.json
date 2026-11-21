@@ -26,11 +26,13 @@
         "test:ecommerce": "@php tests/ecommerce.php",
         "test:security": "@php tests/security.php",
         "test:frontend": "@php tests/frontend.php",
+        "test:seo": "@php tests/seo.php",
         "test:all": [
             "@php tests/run.php",
             "@php tests/ecommerce.php",
             "@php tests/security.php",
-            "@php tests/frontend.php"
+            "@php tests/frontend.php",
+            "@php tests/seo.php"
         ]
     },
     "config": {

@@ -26,11 +26,11 @@
 | Gravité | Ouvert / en cours | Corrigé | Reporté | Total |
 |---|---:|---:|---:|---:|
 | 🔴 Bloquant | 0 | 2 | 0 | 2 |
-| 🟠 Majeur | 3 | 1 | 0 | 4 |
+| 🟠 Majeur | 2 | 2 | 0 | 4 |
 | 🟡 Mineur | 1 | 0 | 5 | 6 |
-| **Total** | **4** | **3** | **5** | **12** |
+| **Total** | **3** | **4** | **5** | **12** |
 
-> Aucune anomalie **bloquante** n'est ouverte au 21/11/2026. Les deux anomalies bloquantes historiques (A-09, A-10) ont été corrigées dans le commit `7d74622` et vérifiées par la recette complète : **94 PASS / 0 FAIL**.
+> Aucune anomalie **bloquante** n'est ouverte au 21/11/2026. Les deux anomalies bloquantes historiques (A-09, A-10) ont été corrigées dans le commit `7d74622`. Le lot P0 SEO (A-05) a été livré ensuite : **106 tests PHP PASS / 0 FAIL + 25 tests SQL PASS / 0 FAIL**, `composer audit` propre.
 
 ---
 
@@ -91,19 +91,18 @@
 | Échéance | V1.1 |
 | Contournement ✅ | Message explicite dans l'UI : « L'upload sécurisé du logo sera disponible au prochain sprint. » |
 
-### A-05 — SEO technique incomplet (US-047 partielle)
+### A-05 — SEO technique incomplet (US-047) ✅
 
 | | |
 |---|---|
-| Gravité | 🟠 Majeur |
-| État | 🟡 En cours |
+| Gravité | 🟠 Majeur (corrigé) |
+| État | ✅ Corrigé — 21/11/2026 |
 | Découvert le | 21/11/2026 (audit SEO) |
-| Description | 6 critères sur 12 sont conformes (URLs, title, description, Hn, alt, lang). Manquent : balise canonical, JSON-LD Schema.org, `sitemap.xml`, `robots.txt`, Open Graph, suivi KPI. |
+| Description | 6 critères sur 12 étaient conformes (URLs, title, description, Hn, alt, lang). Manquaient : balise canonical, JSON-LD Schema.org, `sitemap.xml`, `robots.txt`, Open Graph, suivi KPI. |
 | Impact | Critère de recette globale « SEO : balises uniques, sitemap.xml, robots.txt, JSON-LD, URLs propres » non coché ; US-047 non terminée. |
-| Action corrective | Suivre le [plan SEO](../08_seo_marketing/plan_seo.md), lot P0 avant le 07/01. |
+| Correction | Lot P0 livré : `Seo` (canonical + JSON-LD avec nonce CSP), `public/robots.txt`, `public/sitemap.xml` et `tools/generate_sitemap.php`, `X-Robots-Tag` par chemin, `tests/seo.php` (12 tests). Voir [plan SEO](../08_seo_marketing/plan_seo.md) §3.1. **10 critères/12 conformes** ; Open Graph et KPI restent en P1. |
 | Responsable | Architecte BDD / Sécurité / SEO |
-| Échéance | 10/01/2027 (préjury) |
-| Contournement | Le socle indexable est déjà en place (title/description uniques, URLs propres, fallback alt). |
+| Vérification | `composer test:seo` → 12 PASS / 0 FAIL ; `composer test:all` → 106 PASS / 0 FAIL. |
 
 ### A-06 — Limite de débit par IP absente en production
 

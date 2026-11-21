@@ -44,7 +44,7 @@
 | **Sprint 1** | 16/11 → 29/11 | Cadrer le projet et valider la structure UX | 27 | US-001 → US-010 | ✅ Terminé (25/27 — US-005 en attente A-01) |
 | **Sprint 2** | 30/11 → 13/12 | Produire le design haute fidélité et la base SQL | 40 | US-011 → US-022 | ✅ Livré par anticipation (BDD 25 tests, UX 6 docs) |
 | **Sprint 3** | 14/12 → 27/12 | Avoir une application MVC + CRUD et un site responsive complet | 41 | US-023 → US-034 | ✅ Livré par anticipation (MVC 24 tests + frontend 12 tests) |
-| **Sprint 4** | 28/12 → 10/01 | Réussir le parcours d'achat de bout en bout et sécuriser | 45 | US-035 → US-047 | 🟡 Presque : E-commerce 15 + sécurité 18 verts ; US-047 SEO partielle (A-05) |
+| **Sprint 4** | 28/12 → 10/01 | Réussir le parcours d'achat de bout en bout et sécuriser | 45 | US-035 → US-047 | ✅ Livré : E-commerce 15 + sécurité 18 + SEO 12 verts (A-05 clôturée) |
 | **Sprint 5** | 11/01 → 24/01 | Auditer, corriger, documenter et déployer la démo | 30 | US-048 → US-058 | 🔵 En cours par anticipation (SEO, anomalies, soutenance, Git) |
 | **TOTAL** | | | **183** | **58 US** | **~151 pts validés / 183** |
 
@@ -77,9 +77,10 @@
 | E-commerce | Panier, checkout 3 étapes, sandbox, factures PDF | **15 PHP PASS** | `7328ef5` |
 | Sécurité | Argon2id, throttle, CSRF, RBAC, CSP, audit | **18 PHP PASS** + `composer audit` propre | `58c51ba` |
 | Frontend | Design system, 12 écrans, JS externe, WCAG AA | **12 PHP PASS** | `7d74622` |
-| SEO / soutenance / anomalies | 8ᵉ et 9ᵉ dossiers `docs/`, registre des anomalies | Plan SEO + support livrés | en cours (21/11) |
+| SEO / soutenance / anomalies | 8ᵉ et 9ᵉ dossiers `docs/`, registre des anomalies | Plan + support livrés | `4d94e27` |
+| SEO technique P0 (US-047) | `Seo`, canonical, JSON-LD nonce, robots, sitemap, X-Robots-Tag | **12 SEO PASS** + 106 PHP au total | en cours (21/11) |
 
-> **Total validé : 94 tests PASS / 0 FAIL** (24 + 15 + 18 + 12 + 25). PHP lint : 64 fichiers, 0 erreur. L'équipe a donc livré en 6 semaines l'équivalent des sprints 1 à 4, soit environ **9 semaines de travail prévues**.
+> **Total validé : 106 tests PHP PASS / 0 FAIL** (24 + 15 + 18 + 12 + 12) **+ 25 tests SQL PASS / 0 FAIL**, soit **131 tests**. PHP lint : 67 fichiers, 0 erreur ; `composer audit` propre. L'équipe a donc livré en 6 semaines l'équivalent des sprints 1 à 4, soit environ **9 semaines de travail prévues**.
 
 ---
 
@@ -101,9 +102,9 @@
 
 > Projection : la charge est concentrée sur les sprints 2 à 4 (121 points sur 183). Un retard de plus d'une semaine acquise en S3–S4 doit déclencher le basculement des US Should/Could en réserve (voir backlog §8).
 >
-> **Écart constaté au 21/11 :** le Sprint 1 est bouclé avec 8 jours d'avance et les modules des sprints 2, 3 et 4 sont déjà livrés et validés par 94 tests. Le point réel se situe vers **~151 points validés / 183**, soit environ **34 points restants** contre 168 prévus à la date du 22/11. L'avance est donc d'environ **134 points sur le burndown de référence**. Le tableau ci-dessus est conservé comme projection initiale ; le paragraphe « Écart constaté au 21/11 » du §3 fait foi pour l'avancement réel.
+> **Écart constaté au 21/11 :** le Sprint 1 est bouclé avec 8 jours d'avance et les modules des sprints 2, 3 et 4 sont déjà livrés et validés par 131 tests (dont le lot P0 SEO). Le point réel se situe vers **~153 points validés / 183**, soit environ **30 points restants** contre 168 prévus à la date du 22/11. L'avance est donc d'environ **138 points sur le burndown de référence**. Le tableau ci-dessus est conservé comme projection initiale ; le paragraphe « Écart constaté au 21/11 » du §3 fait foi pour l'avancement réel.
 >
-> ⚠️ Cette avance ne doit pas masquer les 2 points encore ouverts (A-01 noms, A-02 remote Git) ni l'US-047 partielle (A-05 SEO) : ils sont suivis dans [liste_anomalies.md](liste_anomalies.md).
+> ⚠️ Cette avance ne doit pas masquer les 2 anomalies majeures encore ouvertes (A-01 noms, A-02 remote Git) : elles sont suivies dans [liste_anomalies.md](liste_anomalies.md). L'US-047 est désormais terminée (A-05 clôturée) ; restent en P1 Open Graph et KPI.
 
 **Vélocité moyenne visée : 36,6 points / sprint (18,3 points / semaine).**
 
@@ -157,7 +158,7 @@
 | R-06 | Jeu de données irréaliste | Moyenne | Faible | BDD | Produits/artisans inspirés de Sidi Bou Saïd | 🟢 Ouvert |
 | R-07 | Incompréhension sandbox | Faible | Moyen | E-commerce | Mentions explicites dans l'UI | 🟢 Ouvert |
 | R-08 | Indisponibilité d'un membre | Faible | Fort | Chef de projet | Documentation partagée, binômes sur les modules clés | 🟢 Ouvert |
-| R-09 | SEO technique incomplet (US-047) | Forte | Moyen | SEO | Plan P0 livré, 6 critères/12 déjà conformes — A-05 | 🟠 Ouvert |
+| R-09 | SEO technique incomplet (US-047) | Forte | Moyen | SEO | Lot P0 livré, 10 critères/12 conformes, 12 tests SEO verts — A-05 clôturée | 🟢 Fermé |
 | R-10 | Aucun remote Git (push impossible) | Forte | Fort | Back-end | URL du dépôt à fournir puis `git remote add origin` — A-02 | 🟠 Ouvert |
 
 ---
@@ -176,6 +177,8 @@
 | DEC-008 | 21/11/2026 | Design system unique + **un seul fichier JS externe** chargé en `defer` | Conformité CSP `script-src 'self'` (aucun script inline) et maintenance facilitée |
 | DEC-009 | 21/11/2026 | Une seule vue `dashboard/index.php` pour les 4 écrans de back-office | Évite 4 copies divergentes ; paramétrage par le contrôleur |
 | DEC-010 | 21/11/2026 | 9 dossiers `docs/` (8 matières + soutenance) | Conformité à la checklist de remise finale du `git_workflow.md` §8 |
+| DEC-011 | 21/11/2026 | JSON-LD en data block avec **nonce par requête** plutôt que fichier `.jsonld` externe | Google lit le HTML source ; le nonce conserve `script-src 'self'` sans `'unsafe-inline'` |
+| DEC-012 | 21/11/2026 | `sitemap.xml` statique régénéré par `tools/generate_sitemap.php` | Servable à la racine sans ajouter de 27ᵉ route (compteurs figés par T02/F11) |
 
 ---
 

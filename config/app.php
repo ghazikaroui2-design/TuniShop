@@ -12,6 +12,8 @@ return [
     'debug'    => filter_var(getenv('APP_DEBUG') ?: 'true', FILTER_VALIDATE_BOOLEAN),
     'timezone' => getenv('APP_TIMEZONE') ?: 'Africa/Tunis',
     'base_url' => getenv('APP_BASE_URL') ?: '/tunishop/public',
+    // US-047 : URL publique absolue utilisée par canonical, JSON-LD et sitemap.
+    'site_url' => getenv('APP_SITE_URL') ?: 'https://tunishop.tn',
     'locale'   => 'fr_TN',
 
     'session' => [

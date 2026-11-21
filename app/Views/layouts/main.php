@@ -6,6 +6,11 @@
   <meta name="theme-color" content="#1d5d8c">
   <title><?= $this->e($pageTitle ?? 'Accueil') ?> — TuniShop</title>
   <meta name="description" content="<?= $this->e($pageDescription ?? 'TuniShop — marketplace locale de l’artisanat tunisien à Sidi Bou Saïd. Céramique, tapis, parfums et bijoux faits main.') ?>">
+  <link rel="canonical" href="<?= $this->e($seo->canonical($canonicalPath ?? null)) ?>">
+  <?= $seo->jsonLdTag($seo->globalGraph()) ?>
+  <?php if (!empty($breadcrumb)) : ?>
+    <?= $seo->jsonLdTag($seo->breadcrumb($breadcrumb)) ?>
+  <?php endif; ?>
   <link rel="stylesheet" href="<?= $this->e($baseUrl ?? '') ?>/assets/css/app.css">
   <script src="<?= $this->e($baseUrl ?? '') ?>/assets/js/app.js" defer></script>
 </head>

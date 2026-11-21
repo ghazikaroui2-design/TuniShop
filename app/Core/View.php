@@ -14,14 +14,22 @@ final class View
 {
     public function __construct(
         private readonly string $basePath,
-        private readonly array $shared = [],
+        private array $shared = [],
     ) {
+    }
+
+    /** Ajoute des variables partagées pour le rendu courant (SEO, requête). */
+    public function share(array $data): void
+    {
+        $this->shared = $data + $this->shared;
     }
 
     /** Rend une vue dans son layout. */
     public function render(string $template, array $data = [], ?string $layout = 'layouts/main'): string
     {
-        $content = $this->renderTemplate($template, $data);
+        // Les variables partagées (session, seo, chemin canonique) sont aussi
+        // disponibles dans la vue partielle ; les données du contrôleur gagnent.
+        $content = $this->renderTemplate($template, $data + $this->shared);
         if ($layout === null) {
             return $content;
         }

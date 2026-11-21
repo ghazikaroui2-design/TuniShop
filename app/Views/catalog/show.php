@@ -1,3 +1,4 @@
+<?= $seo->jsonLdTag($seo->product($product, '/produit/' . rawurlencode((string) $product['slug']), $images)) ?>
 <article class="product-detail" aria-labelledby="product-title">
   <div>
     <?php if ($images !== []) : ?>

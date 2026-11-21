@@ -1,0 +1,16 @@
+# TuniShop — robots.txt (US-047 / NFR-05)
+# Seules les pages publiques d'artisanat sont destinées à l'indexation.
+
+User-agent: *
+Allow: /
+Disallow: /panier
+Disallow: /commande
+Disallow: /compte
+Disallow: /connexion
+Disallow: /inscription
+Disallow: /admin
+Disallow: /vendeur
+Disallow: /api
+Disallow: /sante
+
+Sitemap: https://tunishop.tn/sitemap.xml
