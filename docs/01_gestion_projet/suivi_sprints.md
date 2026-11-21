@@ -2,7 +2,7 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 1.1 — 21/11/2026 |
+| Version | 1.2 — 21/11/2026 |
 | Méthode | Scrum — 5 sprints de 2 semaines |
 | État actuel | **Sprints 1 à 4 livrés par anticipation — Sprint 5 (S9–S10) en cours** |
 | Outil de suivi | Ce document + tableau Kanban (GitHub Projects / Trello / Notion au choix) |
@@ -10,18 +10,19 @@
 
 ---
 
-## 1. Équipe et rôles (hypothèse : 4 membres)
+## 1. Équipe et rôles (5 membres — répartition validée le 21/11/2026)
 
 | Rôle | Membre | Responsabilités | Disponibilité |
 |---|---|---|---|
-| Chef de projet / Product Owner | *à compléter* | CDC, backlog, planning, rituels, documentation, soutenance | S1 → S10 |
-| UX/UI Designer + Intégrateur front | *à compléter* | Personas, flows, Figma, HTML/CSS/JS responsive, accessibilité | S2 → S6 |
-| Développeur back-end / POO / E-commerce | *à compléter* | UML, MVC, CRUD, panier, commande, paiement, factures | S5 → S9 |
-| Architecte BDD / Sécurité / SEO | *à compléter* | Modélisation, SQL, triggers, auth, RBAC, audit, SEO | S3 → S9 |
+| Chef de projet / Product Owner | **Ghazi KAROUI** | CDC, backlog, planning, rituels, documentation, soutenance | S1 → S10 |
+| UX/UI Designer | **Yessine** | Personas, flows, Figma, design system, accessibilité | S2 → S6 |
+| Intégrateur front | **Siwar** | HTML/CSS/JS responsive, 12 écrans, recette frontend | S3 → S6 |
+| Développeur back-end / POO / E-commerce | **Maram** | UML, MVC, CRUD, panier, commande, paiement, factures | S5 → S9 |
+| Architecte BDD / Sécurité / SEO | **Islem** | Modélisation, SQL, triggers, auth, RBAC, audit, SEO | S3 → S9 |
 
-> ⚠️ **A-01 (21/11)** : les 4 noms restent à renseigner. DEC-007 fixe l'identité Git à **Ghazi KAROUI** (chef de projet présumé). Voir [liste_anomalies.md](liste_anomalies.md).
+> ✅ **A-01 clôturée (21/11)** : les 5 noms et les 5 rôles sont validés (US-005). DEC-007 fixe l'identité Git à **Ghazi KAROUI**, qui est bien le chef de projet. Voir [liste_anomalies.md](liste_anomalies.md).
 
-> Si l'équipe compte 5 personnes : isoler le rôle « E-commerce » du back-end et le rôle « Sécurité/SEO » de la BDD pour absorber la charge du sprint 4.
+> La charge du sprint 4 est répartie : E-commerce (Maram) d'un côté, Sécurité/SEO (Islem) de l'autre.
 
 ---
 
@@ -41,12 +42,12 @@
 
 | Sprint | Période | Objectif (Sprint Goal) | Points | US | Statut réel au 21/11 |
 |---|---|---|---|---|---|
-| **Sprint 1** | 16/11 → 29/11 | Cadrer le projet et valider la structure UX | 27 | US-001 → US-010 | ✅ Terminé (25/27 — US-005 en attente A-01) |
+| **Sprint 1** | 16/11 → 29/11 | Cadrer le projet et valider la structure UX | 27 | US-001 → US-010 | ✅ Terminé (27/27 — US-005/A-01 clôturées) |
 | **Sprint 2** | 30/11 → 13/12 | Produire le design haute fidélité et la base SQL | 40 | US-011 → US-022 | ✅ Livré par anticipation (BDD 25 tests, UX 6 docs) |
 | **Sprint 3** | 14/12 → 27/12 | Avoir une application MVC + CRUD et un site responsive complet | 41 | US-023 → US-034 | ✅ Livré par anticipation (MVC 24 tests + frontend 12 tests) |
 | **Sprint 4** | 28/12 → 10/01 | Réussir le parcours d'achat de bout en bout et sécuriser | 45 | US-035 → US-047 | ✅ Livré : E-commerce 15 + sécurité 18 + SEO 12 verts (A-05 clôturée) |
 | **Sprint 5** | 11/01 → 24/01 | Auditer, corriger, documenter et déployer la démo | 30 | US-048 → US-058 | 🔵 En cours par anticipation (SEO, anomalies, soutenance, Git) |
-| **TOTAL** | | | **183** | **58 US** | **~151 pts validés / 183** |
+| **TOTAL** | | | **183** | **58 US** | **153 pts validés / 183** (Sprint 5 en cours) |
 
 ### Détail du Sprint 1 (terminé)
 
@@ -56,14 +57,14 @@
 | US-002 | Construire le backlog produit | 3 | Chef de projet | ✅ Terminé (v1.0) |
 | US-003 | Élaborer le planning Gantt | 3 | Chef de projet | ✅ Terminé (v1.0) |
 | US-004 | Initialiser le dépôt et les conventions Git | 2 | Back-end | ✅ Terminé (Git 2.56.1, commit `5a6caeb`) |
-| US-005 | Répartir les rôles et planifier les rituels | 2 | Chef de projet | 🟡 Noms à compléter (A-01) |
+| US-005 | Répartir les rôles et planifier les rituels | 2 | Chef de projet | ✅ Terminé (5 noms / 5 rôles, A-01 clôturée) |
 | US-006 | Créer les 3 personas (+ 1 secondaire) | 2 | UX/UI | ✅ Terminé |
 | US-007 | Dessiner les user flows (7 flux Mermaid) | 2 | UX/UI | ✅ Terminé |
 | US-008 | Wireframes front-office | 3 | UX/UI | ✅ Terminé (HTML + ASCII) |
 | US-009 | Wireframes back-office | 3 | UX/UI | ✅ Terminé (HTML + ASCII) |
 | US-010 | Dossier de recette / validation 1 | 2 | Chef de projet | ✅ Terminé (checklist dans ce document) |
 
-**Points validés : 25 / 27 · 2 points en attente (noms des membres dans US-005 / A-01) · Sprint bouclé avec 8 jours d'avance.**
+**Points validés : 27 / 27 · Sprint bouclé avec 8 jours d'avance.**
 
 > Le prototype cliquable livré (12 écrans, 3 supports) couvre les US-006 à US-009 et anticipe une partie de l'US-012/US-013 (prototype Figma) prévue en Sprint 2.
 
@@ -78,9 +79,9 @@
 | Sécurité | Argon2id, throttle, CSRF, RBAC, CSP, audit | **18 PHP PASS** + `composer audit` propre | `58c51ba` |
 | Frontend | Design system, 12 écrans, JS externe, WCAG AA | **12 PHP PASS** | `7d74622` |
 | SEO / soutenance / anomalies | 8ᵉ et 9ᵉ dossiers `docs/`, registre des anomalies | Plan + support livrés | `4d94e27` |
-| SEO technique P0 (US-047) | `Seo`, canonical, JSON-LD nonce, robots, sitemap, X-Robots-Tag | **12 SEO PASS** + 106 PHP au total | en cours (21/11) |
+| SEO technique P0 (US-047) | `Seo`, canonical, JSON-LD nonce, robots, sitemap, X-Robots-Tag | **12 SEO PASS** + 81 PHP au total | `30b9f53` |
 
-> **Total validé : 106 tests PHP PASS / 0 FAIL** (24 + 15 + 18 + 12 + 12) **+ 25 tests SQL PASS / 0 FAIL**, soit **131 tests**. PHP lint : 67 fichiers, 0 erreur ; `composer audit` propre. L'équipe a donc livré en 6 semaines l'équivalent des sprints 1 à 4, soit environ **9 semaines de travail prévues**.
+> **Total validé : 81 tests PHP PASS / 0 FAIL** (24 + 15 + 18 + 12 + 12) **+ 25 tests SQL PASS / 0 FAIL**, soit **106 tests**. PHP lint : 67 fichiers, 0 erreur ; `composer audit` propre. L'équipe a donc livré en 6 semaines l'équivalent des sprints 1 à 4, soit environ **9 semaines de travail prévues**.
 
 ---
 
@@ -102,9 +103,9 @@
 
 > Projection : la charge est concentrée sur les sprints 2 à 4 (121 points sur 183). Un retard de plus d'une semaine acquise en S3–S4 doit déclencher le basculement des US Should/Could en réserve (voir backlog §8).
 >
-> **Écart constaté au 21/11 :** le Sprint 1 est bouclé avec 8 jours d'avance et les modules des sprints 2, 3 et 4 sont déjà livrés et validés par 131 tests (dont le lot P0 SEO). Le point réel se situe vers **~153 points validés / 183**, soit environ **30 points restants** contre 168 prévus à la date du 22/11. L'avance est donc d'environ **138 points sur le burndown de référence**. Le tableau ci-dessus est conservé comme projection initiale ; le paragraphe « Écart constaté au 21/11 » du §3 fait foi pour l'avancement réel.
+> **Écart constaté au 21/11 :** le Sprint 1 est bouclé avec 8 jours d'avance et les modules des sprints 2, 3 et 4 sont déjà livrés et validés par 106 tests (dont le lot P0 SEO). Le point réel se situe vers **~153 points validés / 183**, soit environ **30 points restants** contre 168 prévus à la date du 22/11. L'avance est donc d'environ **138 points sur le burndown de référence**. Le tableau ci-dessus est conservé comme projection initiale ; le paragraphe « Écart constaté au 21/11 » du §3 fait foi pour l'avancement réel.
 >
-> ⚠️ Cette avance ne doit pas masquer les 2 anomalies majeures encore ouvertes (A-01 noms, A-02 remote Git) : elles sont suivies dans [liste_anomalies.md](liste_anomalies.md). L'US-047 est désormais terminée (A-05 clôturée) ; restent en P1 Open Graph et KPI.
+> ✅ Les 2 anomalies majeures organisationnelles sont désormais clôturées (A-01 noms/rôles, A-02 remote Git) : voir [liste_anomalies.md](liste_anomalies.md). L'US-047 est terminée (A-05 clôturée) ; restent en P1 Open Graph et KPI.
 
 **Vélocité moyenne visée : 36,6 points / sprint (18,3 points / semaine).**
 
@@ -122,7 +123,7 @@
 - [x] Personas & user flows (US-006, US-007) — prototype cliquable livré en plus
 - [x] Dossier de recette (US-010)
 - [x] Installation Git + initialisation du dépôt (US-004 — commit `5a6caeb`)
-- [ ] Noms des 4 membres dans le planning (US-005 — **A-01**, en attente du chef de projet)
+- [x] Noms des 5 membres dans le planning (US-005 — **A-01 clôturée** : Ghazi, Yessine, Siwar, Maram, Islem)
 - [x] Installation de Composer 2.11.2 + extensions PHP `zip`/`gd` (US-004)
 
 ### ✅ Validation 2 — 20/12/2026 (anticipée au 21/11)
@@ -138,9 +139,9 @@
 - [x] Démo back-office (validation vendeur, stocks, commandes, dashboard) — script slide 8
 - [x] Liste des anomalies détectées avec priorité — [liste_anomalies.md](liste_anomalies.md), 12 entrées
 
-### 🟡 Validation 3 — 24/01/2027 (en préparation)
+### ✅ Validation 3 — 24/01/2027 (anticipée au 21/11)
 
-- [ ] Dépôt Git complet (branches fusionnées, tags) — **A-02** : aucun remote configuré
+- [x] Dépôt Git complet — **A-02 clôturée** : remote `origin` configuré, `develop` et `main` poussés, tags `v0.1` / `v0.5` / `v1.0` publiés
 - [x] 7 dossiers numériques conformes — **9 dossiers** livrés (`01` à `09`, dont SEO et soutenance)
 - [x] Rapport d'audit de sécurité + plan SEO + support de soutenance — `checklist_securite.md`, `plan_seo.md`, `support_soutenance.md`
 
@@ -159,7 +160,7 @@
 | R-07 | Incompréhension sandbox | Faible | Moyen | E-commerce | Mentions explicites dans l'UI | 🟢 Ouvert |
 | R-08 | Indisponibilité d'un membre | Faible | Fort | Chef de projet | Documentation partagée, binômes sur les modules clés | 🟢 Ouvert |
 | R-09 | SEO technique incomplet (US-047) | Forte | Moyen | SEO | Lot P0 livré, 10 critères/12 conformes, 12 tests SEO verts — A-05 clôturée | 🟢 Fermé |
-| R-10 | Aucun remote Git (push impossible) | Forte | Fort | Back-end | URL du dépôt à fournir puis `git remote add origin` — A-02 | 🟠 Ouvert |
+| R-10 | Aucun remote Git (push impossible) | Forte | Fort | Back-end | Remote `origin` configuré, `develop` + `main` poussés et 3 tags publiés — A-02 clôturée | 🟢 Fermé |
 
 ---
 
@@ -169,7 +170,7 @@
 |---|---|---|---|
 | DEC-001 | 20/11/2026 | Stack **PHP 8.3 + MySQL 8 + MVC maison** | Cohérent avec XAMPP/MySQL disponibles et avec le programme BTS DI |
 | DEC-002 | 20/11/2026 | 5 sprints de 2 semaines | Aligné sur les revues S2/S5/S8 du cahier pédagogique |
-| DEC-003 | 20/11/2026 | 4 rôles principaux | Équipe supposée de 4 étudiants (à confirmer) |
+| DEC-003 | 21/11/2026 (confirmée) | 5 rôles principaux pour 5 membres | Équipe confirmée : Ghazi (chef de projet), Yessine (UX), Siwar (front), Maram (back/e-commerce), Islem (BDD/sécurité/SEO) — A-01 clôturée |
 | DEC-004 | 20/11/2026 | Périmètre Must gelé à S2 | Éviter la dérive fonctionnelle |
 | DEC-005 | 20/11/2026 | Paiement **simulé uniquement** | Exigence du cahier des charges, aucun débit réel |
 | DEC-006 | 20/11/2026 | TVA 19 %, livraison 8 DT offerte dès 100 DT | Règles métier RG-02 et RG-03 |

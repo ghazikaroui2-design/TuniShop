@@ -12,7 +12,7 @@
 **_messages clés_**
 - « Bonjour, nous présentons TuniShop, une plateforme e-commerce dédiée aux artisans et commerçants de Sidi Bou Saïd. »
 - « Projet pluridisciplinaire BTS DI 2-1, réalisé du 16 novembre 2026 au 25 janvier 2027. »
-- « 8 matières, 5 sprints, 58 user stories, 131 tests automatisés au vert. »
+- « 8 matières, 5 sprints, 58 user stories, 106 tests automatisés au vert. »
 
 **Appui :** captured'écran de l'accueil (écran 1) + logo 🏺.
 
@@ -55,7 +55,7 @@
 
 ## Slide 4 — Organisation Agile (1 min)
 
-**Titre :** 5 sprints, 4 rôles, des jalons respectés
+**Titre :** 5 sprints, 5 rôles, des jalons respectés
 
 | Sprint | Objectif | Points | Livraison |
 |---|---|---:|---|
@@ -68,6 +68,7 @@
 **_Messages clés_**
 - « Daily, planning, revue, rétrospective : tous les rituels sont documentés avec des modèles de comptes rendus. »
 - « La courbe réelle est en avance sur le burndown prévisionnel : les modules des sprints 2 à 4 ont été livrés avant le 21/11. »
+- « Équipe de 5 : Ghazi (PO), Yessine (UX), Siwar (front), Maram (back/e-commerce), Islem (BDD/sécurité/SEO). »
 
 **Appui :** burndown du [suivi des sprints](../01_gestion_projet/suivi_sprints.md).
 
@@ -216,7 +217,7 @@ Request → Router (26 routes, middlewares) → Controller
 
 ## Slide 12 — Recette & qualité (1 min)
 
-**Titre :** 131 tests, 0 échec
+**Titre :** 106 tests, 0 échec
 
 | Suite | Tests |
 |---|---:|
@@ -226,12 +227,12 @@ Request → Router (26 routes, middlewares) → Controller
 | Frontend | 12 |
 | SEO | 12 |
 | SQL | 25 |
-| **Total** | **131 PASS / 0 FAIL** ✅ |
+| **Total** | **106 PASS / 0 FAIL** ✅ |
 
 **_Messages clés_**
 - « Chaque module livré sauf le dernier a sa propre suite de recette exécutable en une commande. »
 - « `composer audit` ne signale aucune vulnérabilité ; 67 fichiers PHP lintés sans erreur. »
-- « Les anomalies ouvertes sont 3, toutes documentées et priorisées ; aucune n'est bloquante. »
+- « Aucune anomalie bloquante ou majeure ouverte : 7 corrigées, 5 reportées V1.1, toutes documentées et priorisées. »
 
 **Appui :** sortie de `composer test:all` + [liste_anomalies.md](../01_gestion_projet/liste_anomalies.md).
 
@@ -241,13 +242,13 @@ Request → Router (26 routes, middlewares) → Controller
 
 **Titre :** Ce que nous livrons, ce que nous ferions ensuite
 
-**Livré :** 8 matières · 12 écrans · 26 routes · 20 tables · 131 tests · 9 dossiers documentaires · SEO P0 complet.
+**Livré :** 8 matières · 12 écrans · 26 routes · 20 tables · 106 tests · 9 dossiers documentaires · SEO P0 complet.
 
 **V1.1 / P1 (reporté, non bloquant) :**
 - Upload des visuels et du logo boutique (A-03, A-04).
 - 2FA vendeurs/admin et limite de débit (A-06, A-07).
 - Open Graph, enrichissement des descriptions et suivi KPI (P1 SEO).
-- Remote GitHub + tags `v0.1` / `v0.5` / `v1.0` (A-02).
+- Remote GitHub + tags `v0.1` / `v0.5` / `v1.0` poussés — A-02 clôturée.
 
 **_Message final_**
 - « TuniShop est une démonstration complète et sécurisée d'une marketplace locale. Les choix techniques — MVC maison, règles dans la base, sécurité dès le socle, JS externe — ont été faits pour que le projet reste compréhensible, maintenable et évolutif. Merci. »

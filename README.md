@@ -48,7 +48,7 @@ TuniShop/
 
 **Environnement cible :** `http://localhost/tunishop/public/`
 
-> ✅ Environnement vérifié le 20/11/2026 : **Git 2.56.1**, **PHP 8.3.36 (XAMPP)** et **Composer 2.11.2** installés. Dépôt initialisé (`main` + `develop`). Détails et commandes de vérification : `docs/01_gestion_projet/git_workflow.md`.
+> ✅ Environnement vérifié le 20/11/2026 : **Git 2.56.1**, **PHP 8.3.36 (XAMPP)** et **Composer 2.11.2** installés. Dépôt initialisé (`main` + `develop`) et poussé le 21/11 sur `https://github.com/ghazikaroui2-design/TuniShop.git` avec les tags `v0.1` / `v0.5` / `v1.0`. Détails et commandes de vérification : `docs/01_gestion_projet/git_workflow.md`.
 
 ---
 
@@ -61,7 +61,7 @@ TuniShop/
 | [Planning Gantt](docs/01_gestion_projet/planning_gantt.md) | Tableau des lots, jalons et chemin critique |
 | [Diagramme de Gantt visuel](docs/01_gestion_projet/gantt.html) | Vue graphique imprimable (ouvrir dans le navigateur) |
 | [Suivi des sprints](docs/01_gestion_projet/suivi_sprints.md) | Objectifs, vélocité, burndown, état réel au 21/11, rituels, risques |
-| [Liste des anomalies](docs/01_gestion_projet/liste_anomalies.md) | 12 anomalies priorisées — Préjury 10/01 (0 bloquante ouverte) |
+| [Liste des anomalies](docs/01_gestion_projet/liste_anomalies.md) | 12 anomalies priorisées — 7 corrigées, 5 reportées, 0 bloquante/majeure ouverte |
 | [Workflow Git](docs/01_gestion_projet/git_workflow.md) | Branches, conventions de commit, tags, procédure PR |
 
 ### Livrables UX/UI (disponibles — jalon 29/11)
@@ -142,7 +142,7 @@ TuniShop/
 | [Recette frontend](docs/03_frontend/recette_frontend.md) | 12 scénarios F01–F12 et résultats |
 | [Tests](tests/frontend.php) | **12 tests PASS / 0 FAIL** — `composer test:frontend` |
 
-> ✅ Intégration frontend livrée : design system « Bleu de Sidi Bou », 12 écrans câblés sur le MVC, JS externe conforme CSP, responsive 320/640/1024 px+ et accessibilité WCAG 2.1 AA. **106 tests PHP + 25 tests SQL au vert** (24 MVC + 15 E-commerce + 18 Sécurité + 12 Frontend + 12 SEO + 25 SQL).
+> ✅ Intégration frontend livrée : design system « Bleu de Sidi Bou », 12 écrans câblés sur le MVC, JS externe conforme CSP, responsive 320/640/1024 px+ et accessibilité WCAG 2.1 AA. **106 tests au vert** (81 PHP + 25 SQL : 24 MVC + 15 E-commerce + 18 Sécurité + 12 Frontend + 12 SEO + 25 SQL).
 
 ### Livrables Marketing du Web / SEO (disponibles — 8ᵉ matière)
 
@@ -164,7 +164,7 @@ TuniShop/
 | [Support de soutenance](docs/09_soutenance/support_soutenance.md) | 13 slides, messages clés, démo scriptée client/vendeur/admin, plan B matériel |
 | [Questions de jury](docs/09_soutenance/questions_jury.md) | 25 questions classées par thème, avec réponses et preuves documentées |
 
-> ✅ Dossier de jury prêt : démonstration en 10 minutes, 131 tests affichables en sauvegarde et réponses argumentées aux questions techniques.
+> ✅ Dossier de jury prêt : démonstration en 10 minutes, 106 tests affichables en sauvegarde et réponses argumentées aux questions techniques.
 
 ---
 

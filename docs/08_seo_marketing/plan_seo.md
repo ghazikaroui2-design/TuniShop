@@ -5,7 +5,7 @@
 | Version | 1.1 — 21/11/2026 (lot P0 implémenté) |
 | Portée | SEO technique, on-page, contenu, référencement local Sidi Bou Saïd |
 | Origine | FR-28 · NFR-05 · US-047 (2 pts, Sprint 8) · DEC-001 stack PHP/MVC |
-| Responsable | Architecte BDD / Sécurité / SEO (rôle à confirmer — voir A-01) |
+| Responsable | Islem — Architecte BDD / Sécurité / SEO (rôle confirmé — A-01 clôturée) |
 | Jalons | Préjury 10/01/2027 · Validation 3 24/01/2027 |
 
 ---
@@ -137,7 +137,7 @@ Outil recommandé : **Matomo auto-hébergé** (RGPD, pas de cookie tiers) plutô
 
 ```bash
 composer test:seo                       # 12 PASS / 0 FAIL
-composer test:all                       # 106 PASS / 0 FAIL (24 + 15 + 18 + 12 + 12)
+composer test:all                       # 81 PASS / 0 FAIL (24 + 15 + 18 + 12 + 12)
 mysql -u root -e "SOURCE database/tests.sql"  # 25 PASS / 0 FAIL
 php tools/generate_sitemap.php
 ```

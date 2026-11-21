@@ -2,10 +2,10 @@
 
 | Champ | Valeur |
 |---|---|
-| Version | 1.0 — 21/11/2026 |
+| Version | 1.1 — 21/11/2026 |
 | Période de recette | S1 → S5 (état des lieux au 21/11/2026) |
 | Jalon associé | **Préjury 10/01/2027** — « liste des anomalies détectées avec priorité » |
-| Sources | Recette PHP (69 tests), recette SQL (25 tests), revues de sprint, audit sécurité, revue de code |
+| Sources | Recette PHP (81 tests), recette SQL (25 tests), revues de sprint, audit sécurité, revue de code |
 | Lien | [Suivi des sprints](suivi_sprints.md) · [Recette frontend](../03_frontend/recette_frontend.md) |
 
 ---
@@ -25,43 +25,45 @@
 
 | Gravité | Ouvert / en cours | Corrigé | Reporté | Total |
 |---|---:|---:|---:|---:|
-| 🔴 Bloquant | 0 | 2 | 0 | 2 |
-| 🟠 Majeur | 2 | 2 | 0 | 4 |
-| 🟡 Mineur | 1 | 0 | 5 | 6 |
-| **Total** | **3** | **4** | **5** | **12** |
+| 🔴 Bloquant | 0 | 3 | 0 | 3 |
+| 🟠 Majeur | 0 | 3 | 0 | 3 |
+| 🟡 Mineur | 0 | 1 | 4 | 5 |
+| ⚪ Information | 0 | 0 | 1 | 1 |
+| **Total** | **0** | **7** | **5** | **12** |
 
-> Aucune anomalie **bloquante** n'est ouverte au 21/11/2026. Les deux anomalies bloquantes historiques (A-09, A-10) ont été corrigées dans le commit `7d74622`. Le lot P0 SEO (A-05) a été livré ensuite : **106 tests PHP PASS / 0 FAIL + 25 tests SQL PASS / 0 FAIL**, `composer audit` propre.
+> Aucune anomalie **bloquante ou majeure** n'est ouverte au 21/11/2026 : les 12 entrées se répartissent en **7 corrigées** (A-01, A-02, A-05, A-09, A-10, A-11, A-12) et **5 reportées** (A-03, A-04, A-06, A-07, A-08). Les anomalies bloquantes historiques (A-09, A-10, A-11) ont été corrigées dans le commit `7d74622`, le lot P0 SEO (A-05) dans `30b9f53` et les deux anomalies organisationnelles (A-01, A-02) le 21/11/2026. Recette finale : **81 tests PHP PASS / 0 FAIL + 25 tests SQL PASS / 0 FAIL, soit 106 tests**, `composer audit` propre.
 
 ---
 
 ## 3. Registre des anomalies
 
-### A-01 — Noms des 4 membres non renseignés
+### A-01 — Noms et rôles des 5 membres — répartition validée ✅
 
 | | |
 |---|---|
-| Gravité | 🟠 Majeur (bloque la case Validation 1) |
-| État | 🔵 Ouvert — en attente du chef de projet |
+| Gravité | 🟠 Majeur (corrigé — bloquait la case Validation 1) |
+| État | ✅ Corrigé — 21/11/2026 |
 | Découvert le | 20/11/2026 (US-005) |
-| Description | Le tableau « Équipe et rôles » de `suivi_sprints.md` contient `*à compléter*` pour les 4 rôles. DEC-007 fixe l'identité Git à Ghazi KAROUI, mais les 3 autres membres et la répartition définitive ne sont pas validés. |
-| Impact | Case « Noms des 4 membres » non cochée au jalon Validation 1 ; soutenance impossible à préparer sans répartition des interventions. |
-| Action corrective | Renseigner les 4 noms + valider la répartition des rôles, puis cocher la case du §5 de `suivi_sprints.md`. |
+| Description | Le tableau « Équipe et rôles » de `suivi_sprints.md` contenait `*à compléter*` pour les rôles. DEC-007 fixait l'identité Git à Ghazi KAROUI, mais la répartition définitive n'était pas validée. |
+| Impact | Case « Noms des membres » non cochée au jalon Validation 1 ; soutenance impossible à préparer sans répartition des interventions. |
+| Correction | Équipe confirmée à 5 membres : **Ghazi KAROUI** (chef de projet / PO), **Yessine** (UX/UI), **Siwar** (intégration front), **Maram** (back-end / POO / e-commerce), **Islem** (BDD / sécurité / SEO). DEC-003 mis à jour ; case US-005 cochée et Sprint 1 passé à 27/27 pts. |
 | Responsable | Chef de projet / PO |
-| Échéance | 29/11/2026 |
+| Échéance | 29/11/2026 — **respectée** (21/11) |
+| Vérification | `suivi_sprints.md` §1 et §5 : 5 noms, 5 rôles, plus aucun `*à compléter*` ; `grep` sur les `docs/` : 0 mention « 4 membres ». |
 
-### A-02 — Aucun remote Git configuré (push impossible)
+### A-02 — Aucun remote Git configuré (push impossible) ✅
 
 | | |
 |---|---|
-| Gravité | 🟠 Majeur |
-| État | 🔵 Ouvert — en attente de l'URL du dépôt |
+| Gravité | 🟠 Majeur (corrigé) |
+| État | ✅ Corrigé — 21/11/2026 |
 | Découvert le | 20/11/2026 |
-| Description | `git remote -v` ne renvoie aucune entrée. Les 5 commits sont locaux sur `develop` ; aucun push ni tag n'a pu être effectué. |
+| Description | `git remote -v` ne renvoyait aucune entrée. Les commits étaient locaux sur `develop` ; aucun push ni tag n'était possible. |
 | Impact | Jalon Validation 3 : « Dépôt Git complet (branches fusionnées, tags) » non validable ; travail collaboratif impossible. |
-| Action corrective | `git remote add origin <URL GitHub>` puis `git push -u origin develop` ; créer les tags `v0.1`, `v0.5`, `v1.0` puis pousser `main`. |
+| Correction | `git remote add origin https://github.com/ghazikaroui2-design/TuniShop.git`, `git push -u origin develop`, fast-forward de `main` puis `git push origin main`. Tags annotés `v0.1` (`4f4e198`), `v0.5` (`7d74622`) et `v1.0` publiés via `git push --tags`. |
 | Responsable | Back-end |
-| Échéance | 10/01/2027 (avant préjury) |
-| Contournement | Historique local complet et lisible (`git log --oneline`) — voir preuve dans `git_workflow.md`. |
+| Échéance | 10/01/2027 — **respectée** (21/11) |
+| Vérification | `git remote -v` affiche `origin` (fetch/push) ; `git ls-remote --heads --tags origin` confirme `refs/heads/develop`, `refs/heads/main` et les 3 tags. Case Validation 3 cochée dans `suivi_sprints.md` §5. |
 
 ### A-03 — Visuels produits non versionnés
 
@@ -101,8 +103,8 @@
 | Description | 6 critères sur 12 étaient conformes (URLs, title, description, Hn, alt, lang). Manquaient : balise canonical, JSON-LD Schema.org, `sitemap.xml`, `robots.txt`, Open Graph, suivi KPI. |
 | Impact | Critère de recette globale « SEO : balises uniques, sitemap.xml, robots.txt, JSON-LD, URLs propres » non coché ; US-047 non terminée. |
 | Correction | Lot P0 livré : `Seo` (canonical + JSON-LD avec nonce CSP), `public/robots.txt`, `public/sitemap.xml` et `tools/generate_sitemap.php`, `X-Robots-Tag` par chemin, `tests/seo.php` (12 tests). Voir [plan SEO](../08_seo_marketing/plan_seo.md) §3.1. **10 critères/12 conformes** ; Open Graph et KPI restent en P1. |
-| Responsable | Architecte BDD / Sécurité / SEO |
-| Vérification | `composer test:seo` → 12 PASS / 0 FAIL ; `composer test:all` → 106 PASS / 0 FAIL. |
+| Responsable | Islem — Architecte BDD / Sécurité / SEO |
+| Vérification | `composer test:seo` → 12 PASS / 0 FAIL ; `composer test:all` → 81 PASS / 0 FAIL (les 25 tests SQL sont lancés séparément via `database/tests.sql`). |
 
 ### A-06 — Limite de débit par IP absente en production
 

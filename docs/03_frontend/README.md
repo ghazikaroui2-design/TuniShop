@@ -66,6 +66,6 @@ Le layout reçoit `session` depuis `Application` (données partagées), ce qui p
 - ✅ 12 écrans intégrés et câblés sur la base réelle.
 - ✅ Design system responsive et accessible.
 - ✅ JS externe unique, sans dépendance ni appel réseau externe.
-- ✅ 131 tests verts au total (24 socle + 15 e-commerce + 18 sécurité + 12 frontend + 12 SEO + 25 SQL).
-- ⏳ Noms des 4 membres de l'équipe à renseigner dans `docs/01_gestion_projet/suivi_sprints.md` (US-005).
-- ⏳ Push Git en attente de l'URL du dépôt distant.
+- ✅ 106 tests verts au total (81 PHP : 24 socle + 15 e-commerce + 18 sécurité + 12 frontend + 12 SEO, + 25 SQL).
+- ✅ Noms des 5 membres validés dans `docs/01_gestion_projet/suivi_sprints.md` (US-005, A-01 clôturée).
+- ✅ Dépôt GitHub poussé (`develop`, `main`, tags `v0.1`/`v0.5`/`v1.0` — A-02 clôturée).

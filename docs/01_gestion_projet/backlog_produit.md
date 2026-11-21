@@ -58,7 +58,7 @@ Chaque ligne est une *user story* avec ses critères d'acceptation (AC) résumé
 | US-002 | E01 | En tant qu'équipe, nous voulons un backlog priorisé afin de savoir quoi développer. | M | 3 | 58 US avec AC, estimations, priorités MoSCoW et répartition en sprints. |
 | US-003 | E01 | En tant que chef de projet, je veux un planning Gantt afin de suivre les jalons. | M | 3 | 10 semaines, jalons S2/S5/S8/S10, chemin critique, dépendances, version graphique HTML. |
 | US-004 | E01 | En tant que développeur, je veux un dépôt Git structuré afin de collaborer sans conflit. | M | 2 | `.gitignore`, README, branches `main`/`develop`, convention de commits documentée. |
-| US-005 | E01 | En tant qu'équipe, nous voulons répartir les rôles afin de clarifier les responsabilités. | M | 2 | 4 rôles identifiés (chef de projet, UX/Front, Back/POO, BDD/Sécurité), planning des rituels. |
+| US-005 | E01 | En tant qu'équipe, nous voulons répartir les rôles afin de clarifier les responsabilités. | M | 2 | 5 rôles identifiés (chef de projet, UX/UI, intégration front, back/POO/E-commerce, BDD/Sécurité/SEO), planning des rituels. ✅ Livrée le 21/11. |
 
 ### Sprint 2 — Recherche UX & wireframing (12 pts)
 

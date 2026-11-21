@@ -13,7 +13,7 @@
 **R.** Planning poker sur 58 US, réparties en 10 sprints de 2 semaines, avec vélocité visée de 36,6 points/sprint. La charge est volontairement concentrée sur S2–S4 (121 points). Un écart supérieur à une semaine déclenche le basculement des US Should/Could en réserve V1.1. Preuve : backlog §4 et burndown du suivi des sprints.
 
 ### Q3. Quelles sont vos anomalies ouvertes aujourd'hui ?
-**R.** Deux majeures : A-01 (noms de l'équipe) et A-02 (remote GitHub). Les autres sont mineures et reportées V1.1 (A-03 images, A-04 logo, A-06/A-07 sécurité). **Aucune bloquante.** A-05 (SEO technique) est clôturée depuis le 21/11. Preuve : [liste_anomalies.md](../01_gestion_projet/liste_anomalies.md).
+**R.** Plus aucune anomalie bloquante ou majeure ouverte au 21/11 : **7 corrigées** (A-01 noms/rôles, A-02 remote GitHub, A-05 SEO, A-09/A-10/A-11/A-12) et **5 reportées** (A-03 images, A-04 logo, A-06/A-07 sécurité, A-08 Figma). L'équipe est de 5 membres (Ghazi, Yessine, Siwar, Maram, Islem) et le dépôt GitHub est poussé avec 3 tags. Preuve : [liste_anomalies.md](../01_gestion_projet/liste_anomalies.md).
 
 ---
 
@@ -93,10 +93,10 @@
 **R.** Choix volontaire : `.gitignore` exclut `public/uploads/*` pour ne pas alourdir le dépôt et éviter de versionner des fichiers binaires. Le contrôleur détecte l'absence du fichier et affiche une illustration textuelle accessible. C'est l'anomalie A-03, reportée en V1.1 avec l'upload sécurisé.
 
 ### Q23. Quelle est votre plus grosse dette technique ?
-**R.** L'absence de remote GitHub (A-02) et les noms de l'équipe (A-01) : deux points organisationnels, pas techniques. Côté code, la limite principale est l'absence de tests navigateur (Selenium/Playwright) : nos recettes sont structurelles (F01–F12) et SEO (SEO-01–SEO-12), pas visuelles.
+**R.** Initialement, l'absence de remote GitHub (A-02) et les noms de l'équipe (A-01) : deux points organisationnels, pas techniques. **Les deux sont désormais clôturés** (5 membres nommés, `develop`/`main` et 3 tags poussés). Côté code, la limite principale reste l'absence de tests navigateur (Selenium/Playwright) : nos recettes sont structurelles (F01–F12) et SEO (SEO-01–SEO-12), pas visuelles.
 
 ### Q24. Si vous recommenciez, que changeriez-vous ?
-**R.** J'écrirais les tests SEO et de rendu HTML **en même temps** que le layout — c'est ce que nous avons fait avec `tests/seo.php`, ce qui a permis de clôturer A-05 en une demi-journée ; et je demanderais l'URL du dépôt Git dès le Sprint 1 plutôt qu'à la fin (A-02 reste ouvert).
+**R.** J'écrirais les tests SEO et de rendu HTML **en même temps** que le layout — c'est ce que nous avons fait avec `tests/seo.php`, ce qui a permis de clôturer A-05 en une demi-journée ; et je demanderais l'URL du dépôt Git dès le Sprint 1 plutôt qu'à la fin (A-02 a finalement été clôturé le 21/11).
 
 ### Q25. Combien de temps avez-vous passé sur la sécurité ?
 **R.** Le durcissement a été intégré dès le socle (S5) puis consolidé en S9 : Argon2id, throttle, CSRF rotatif, RBAC, en-têtes globaux, audit. 18 tests dédiés et un dossier de 6 documents. Le résultat est mesurable : `composer audit` propre et zéro donnée bancaire stockée. Voir [README sécurité](../07_securite/README.md).
