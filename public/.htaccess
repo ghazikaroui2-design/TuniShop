@@ -1,0 +1,12 @@
+# TuniShop — URLs propres sous Apache / XAMPP.
+# Toute requete qui ne correspond pas a un fichier ou dossier existant
+# est envoyee au routeur frontal public/index.php.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Assets, robots.txt, sitemap.xml, uploads et index.php restent servis directement.
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>

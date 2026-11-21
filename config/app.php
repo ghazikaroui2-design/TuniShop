@@ -11,7 +11,9 @@ return [
     'env'      => getenv('APP_ENV') ?: 'local',
     'debug'    => filter_var(getenv('APP_DEBUG') ?: 'true', FILTER_VALIDATE_BOOLEAN),
     'timezone' => getenv('APP_TIMEZONE') ?: 'Africa/Tunis',
-    'base_url' => getenv('APP_BASE_URL') ?: '/tunishop/public',
+    // Vide par defaut : public/ est la racine du serveur (php -S -t public ou vhost).
+    // Adapter uniquement si l'application est servie depuis un sous-dossier.
+    'base_url' => getenv('APP_BASE_URL') !== false ? (string) getenv('APP_BASE_URL') : '',
     // US-047 : URL publique absolue utilisée par canonical, JSON-LD et sitemap.
     'site_url' => getenv('APP_SITE_URL') ?: 'https://tunishop.tn',
     'locale'   => 'fr_TN',

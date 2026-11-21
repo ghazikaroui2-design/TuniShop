@@ -46,7 +46,7 @@ TuniShop/
 | PDF | **DomPDF 3.1.6** via Composer (`composer.lock` versionné) |
 | Versioning | Git — branches `feature/*`, `fix/*`, `docs/*` |
 
-**Environnement cible :** `http://localhost/tunishop/public/`
+**Environnement cible :** le dossier `public/` doit être la racine du serveur. Commande recommandée : `php -S 127.0.0.1:8000 -t public`, puis ouvrir <http://127.0.0.1:8000/>. Sous Apache/XAMPP, déclarer un **virtual host** dont le `DocumentRoot` pointe sur `.../TuniShop/public` : les liens internes étant absolus (`/catalogue`, `/connexion`, …), servir le projet depuis `htdocs/tunishop/public` sans vhost ne fonctionne pas.
 
 > ✅ Environnement vérifié le 20/11/2026 : **Git 2.56.1**, **PHP 8.3.36 (XAMPP)** et **Composer 2.11.2** installés. Dépôt initialisé (`main` + `develop`) et poussé le 21/11 sur `https://github.com/ghazikaroui2-design/TuniShop.git` avec les tags `v0.1` / `v0.5` / `v1.0`. Détails et commandes de vérification : `docs/01_gestion_projet/git_workflow.md`.
 
