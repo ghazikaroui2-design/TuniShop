@@ -30,7 +30,7 @@ TuniShop/
 └── README.md
 ```
 
-> ⚠️ Les dossiers techniques seront créés au fur et à mesure des sprints. Le contenu actuel couvre la **gestion de projet (S1)**, le **design UX/UI (S2–S3)**, la **base de données (S4–S5)**, le **socle POO/MVC/UML (S5)** et le **module E-commerce transactionnel (S7–S8)**.
+> ✅ Les **9 dossiers `docs/`** sont livrés : 8 matières (gestion de projet, UX/UI, responsive, BDD, POO/UML, e-commerce, sécurité, SEO) + dossier de soutenance. Les modules techniques des sprints 1 à 4 ont été livrés par anticipation au 21/11/2026. Voir [suivi des sprints](docs/01_gestion_projet/suivi_sprints.md) et [liste des anomalies](docs/01_gestion_projet/liste_anomalies.md).
 
 ---
 
@@ -60,7 +60,8 @@ TuniShop/
 | [Backlog produit](docs/01_gestion_projet/backlog_produit.md) | 58 user stories priorisées, estimées et réparties sur 10 sprints |
 | [Planning Gantt](docs/01_gestion_projet/planning_gantt.md) | Tableau des lots, jalons et chemin critique |
 | [Diagramme de Gantt visuel](docs/01_gestion_projet/gantt.html) | Vue graphique imprimable (ouvrir dans le navigateur) |
-| [Suivi des sprints](docs/01_gestion_projet/suivi_sprints.md) | Objectifs, vélocité, burndown, rituels, registre des risques |
+| [Suivi des sprints](docs/01_gestion_projet/suivi_sprints.md) | Objectifs, vélocité, burndown, état réel au 21/11, rituels, risques |
+| [Liste des anomalies](docs/01_gestion_projet/liste_anomalies.md) | 12 anomalies priorisées — Préjury 10/01 (0 bloquante ouverte) |
 | [Workflow Git](docs/01_gestion_projet/git_workflow.md) | Branches, conventions de commit, tags, procédure PR |
 
 ### Livrables UX/UI (disponibles — jalon 29/11)
@@ -142,6 +143,25 @@ TuniShop/
 | [Tests](tests/frontend.php) | **12 tests PASS / 0 FAIL** — `composer test:frontend` |
 
 > ✅ Intégration frontend livrée : design system « Bleu de Sidi Bou », 12 écrans câblés sur le MVC, JS externe conforme CSP, responsive 320/640/1024 px+ et accessibilité WCAG 2.1 AA. **94 tests au vert** au total (24 MVC + 15 E-commerce + 18 Sécurité + 12 Frontend + 25 SQL).
+
+### Livrables Marketing du Web / SEO (disponibles — 8ᵉ matière)
+
+| Document | Contenu |
+|---|---|
+| [Synthèse SEO](docs/08_seo_marketing/README.md) | État des lieux (6 critères/12 conformes), 8ᵉ matière, liens avec NFR-05 |
+| [Plan SEO](docs/08_seo_marketing/plan_seo.md) | Stratégie locale Sidi Bou Saïd, plan P0/P1/P2, KPI, recette, contrainte CSP |
+
+> 🟡 Socle indexable en place (URLs propres, title/description uniques, Hn, alt, lang). Restent à finaliser : canonical, JSON-LD, `sitemap.xml`, `robots.txt` — voir anomalie A-05.
+
+### Livrables Soutenance (disponibles — dossier 9)
+
+| Document | Contenu |
+|---|---|
+| [Synthèse soutenance](docs/09_soutenance/README.md) | Chiffres clés, 9 dossiers, règles d'or de la présentation |
+| [Support de soutenance](docs/09_soutenance/support_soutenance.md) | 13 slides, messages clés, démo scriptée client/vendeur/admin, plan B matériel |
+| [Questions de jury](docs/09_soutenance/questions_jury.md) | 25 questions classées par thème, avec réponses et preuves documentées |
+
+> ✅ Dossier de jury prêt : démonstration en 10 minutes, 94 tests affichables en sauvegarde et réponses argumentées aux questions techniques.
 
 ---
 
